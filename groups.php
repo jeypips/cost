@@ -7,7 +7,7 @@
 		<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
 		<meta name="author" content="Coderthemes">
 
-		<link rel="shortcut icon" href="assets/images/cs_logo.png">
+		<link rel="shortcut icon" href="assets/images/logo.png">
 
 		<title>Groups - Cost Sheet System</title>
 		
@@ -55,7 +55,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.php" class="logo"><img class="img-circle" src="assets/images/cs_logo.png" alt="Logo"><span>Cost Sheet</span></a>
+                        <a href="index.php" class="logo"><img class="img-circle" src="assets/images/logo.png" alt="Logo"><span>Cost Sheet</span></a>
                     </div>
                 </div>
 
