@@ -7,7 +7,7 @@
 		<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
 		<meta name="author" content="Coderthemes">
 
-		<link rel="shortcut icon" href="assets/images/favicon_1.ico">
+		<link rel="shortcut icon" href="assets/images/cs_logo.png">
 
 		<title>Groups - Cost Sheet System</title>
 		
@@ -32,7 +32,18 @@
         <script src="assets/js/modernizr.min.js"></script>
 
 	</head>
-
+	<style type="text/css">
+		.img-circle {
+			width: 50px;			
+		}
+		.company {
+			width: 250px;			
+		}
+		.not-active {
+			pointer-events: none;
+			cursor: default;
+		}
+	</style>
 	<body class="fixed-left" ng-app="group" ng-controller="groupCtrl" account-profile>
 
 		<!-- Begin page -->
@@ -44,7 +55,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <a href="index.php" class="logo"><img class="img-circle" src="assets/images/cs_logo.png" alt="Logo"><span>Cost Sheet</span></a>
                     </div>
                 </div>
 
@@ -58,7 +69,9 @@
                                 </button>
                                 <span class="clearfix"></span>
                             </div>
-
+							<!-- <div class="navbar-left app-search pull-left hidden-xs">
+			                     <h5 class="portlet-title" style="color:white;">{{profile.fullname}}</h5>
+			                </div>-->
 							<ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="hidden-xs">
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>

@@ -7,7 +7,7 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+        <link rel="shortcut icon" href="assets/images/cs_logo.png">
 
         <title>Dashboard - Cost Sheet System</title>
 
@@ -30,7 +30,18 @@
 
         <script src="assets/js/modernizr.min.js"></script>
     </head>
-
+	<style type="text/css">
+		.img-circle {
+			width: 50px;			
+		}
+		.company {
+			width: 250px;			
+		}
+		.not-active {
+			pointer-events: none;
+			cursor: default;
+		}
+	</style>
     <body class="fixed-left" ng-app="dashboard" ng-controller="dashboardCtrl" account-profile>
 
         <!-- Begin page -->
@@ -42,7 +53,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="index.php" class="logo"><i class="icon-magnet icon-c-logo"></i><span>Ub<i class="md md-album"></i>ld</span></a>
+                        <a href="index.php" class="logo"><img class="img-circle" src="assets/images/cs_logo.png" alt="Logo"><span>Cost Sheet</span></a>
                     </div>
                 </div>
 
@@ -56,12 +67,6 @@
                                 </button>
                                 <span class="clearfix"></span>
                             </div>
-
-                            <form role="search" class="navbar-left app-search pull-left hidden-xs">
-			                     <input type="text" placeholder="Search..." class="form-control">
-			                     <a href=""><i class="fa fa-search"></i></a>
-			                </form>
-
 
                             <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="hidden-xs">
@@ -119,7 +124,6 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4 class="page-title">Dashboard</h4>
-                                <p class="text-muted page-title-alt">Welcome to System</p>
                             </div>
                         </div>
 						
@@ -127,8 +131,11 @@
 							<div class="col-sm-12">
 								<div class="card-box">
 									<div class="row">
-										<div class="col-md-6">
-											
+										<div class="col-md-8">
+											<h4>Welcome to Cost Sheet System!</h4>
+										</div>
+										<div class="col-md-4">
+											<img src="assets/images/logo_company.png" class="company pull-right" alt="Logo">
 										</div>
 									</div>
 								</div>
