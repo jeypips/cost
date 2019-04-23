@@ -119,6 +119,9 @@
                                 <li><a href="index.php" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
 							<li class="has_sub">
+                                <li><a href="sheets.php" class="waves-effect"><i class="ti-files"></i><span> Sheets </span></a></li>
+                            </li>
+							<li class="has_sub">
                                 <a href="#" class="waves-effect active"><i class="ti-settings"></i> <span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>

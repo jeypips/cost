@@ -115,6 +115,9 @@
                                 <li><a href="index.php" class="waves-effect active"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
 							<li class="has_sub">
+                                <li><a href="sheets.php" class="waves-effect"><i class="ti-files"></i><span> Sheets </span></a></li>
+                            </li>
+							<li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">2</span><span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php" class="waves-effect">Accounts</a></li>
@@ -137,30 +140,19 @@
 
                         <!-- Page-Title -->
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-8">
                                 <h4 class="page-title">Dashboard</h4>
+								<p class="text-muted page-title-alt">Welcome to Cost Sheet System!</p>
                             </div>
-                        </div>
-						
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="card-box">
-									<div class="row">
-										<div class="col-md-8">
-											<h4>Welcome to Cost Sheet System!</h4>
-										</div>
-										<div class="col-md-4">
-											<img src="assets/images/logo_company.png" class="company pull-right" alt="Logo">
-										</div>
-									</div>
-								</div>
+							<div class="col-md-4">
+								<img src="assets/images/logo_company.png" class="company pull-right" alt="Logo">
 							</div>
-						</div><!-- row -->
+                        </div>
                     </div> <!-- container -->
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                   Copyright &copy; <?php echo date("Y"); ?>
+                   Copyright &copy; <b>Cost Sheet System</b> <?php echo date("Y"); ?>
                 </footer>
 
             </div>
