@@ -13,69 +13,39 @@
 			</li>
 		</ol>
 	</div>
-	
-	<div class="col-md-2">
-		<form role="form">
-			<button class="btn btn-primary waves-effect waves-light pull-right" ng-click="app.account(this)">Add</button>
-		</form>
-	</div>
 </div>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="card-box">
-			<div class="row">
-			
-				<div class="row">
-					<div class="col-sm-8">
-						<h3 class="m-t-0 header-title"><b>List</b></h3>
-					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button type="button" class="btn waves-effect waves-light btn-primary"><i class="fa fa-search"></i></button>
-								</span>
-								<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" ng-model="search" placeholder="Search">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="p-20">
-					<table class="table m-0">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>Name</th>
-								<th>Username</th>
-								<th>Groups</th>
-								<th>Date Added</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="account in filterData = (accounts | filter:search) | pagination: currentPage:pageSize">
-								<th>{{$index+1}}</th>
-								<td>{{account.fullname}}</td>
-								<td>{{account.username}}</td>
-								<td>{{account.groups}}</td>
-								<td>{{account.date_added}}</td>
-								<td>
-									<button class="btn btn-default waves-effect waves-light" ng-click="app.account(this,account)"><i class="fa fa-edit"></i></button>
-									<button class="btn btn-danger waves-effect waves-light" ng-click="app.delete(this,account)"><i class="fa fa-trash-o"></i></button>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="6" style="text-align: left;">
-									<div class="float-left"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData.length" ng-model="currentPage" max-size="maxSize"></ul></div>
-								</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-		</div>
+<div class="panel panel-border panel-primary">
+	<div class="panel-heading">
+		<h4><i class="icon-people"></i> List
+		<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.account(this)">Add</button>
+		</h4>
+	</div>
+	<hr>
+	<div class="panel-body">
+		<table id="user_table" class="table table-striped m-0">
+		  <thead>
+			<tr>
+				<th>No.</th>
+				<th>Name</th>
+				<th>Username</th>
+				<th>Groups</th>
+				<th>Date Added</th>
+				<th>Actions</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr ng-repeat="a in accounts">
+				<td>{{$index+1}}</td>
+				<td>{{a.fullname}}</td>
+				<td>{{a.username}}</td>
+				<td>{{a.groups}}</td>
+				<td>{{a.date_added}}</td>
+				<td>
+					<button class="btn btn-default waves-effect waves-light" ng-click="app.account(this,a)"><i class="fa fa-edit"></i></button>
+					<button class="btn btn-danger waves-effect waves-light" ng-click="app.delete(this,a)"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+		  </tbody>
+		</table>
 	</div>
 </div>
