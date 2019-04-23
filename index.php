@@ -92,6 +92,21 @@
 
             <div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
+					<div class="user-details">
+                        <div class="pull-left">
+                            <img src="{{profile.picture}}" alt="" class="thumb-md img-circle">
+                        </div>
+                        <div class="user-info">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><small>{{profile.fullname}}</small> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
+                                    <li><a href="javascript:void(0)" logout-account><i class="md md-settings-power"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                            <p class="text-muted m-0">{{profile.desc.description}}</p>
+                        </div>
+                    </div>
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
@@ -100,7 +115,7 @@
                                 <li><a href="index.php" class="waves-effect active"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
 							<li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span> Maintenance </span> </a>
+                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">2</span><span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php" class="waves-effect">Accounts</a></li>
                                     <li><a href="groups.php" class="waves-effect">Groups</a></li>

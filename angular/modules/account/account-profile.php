@@ -12,6 +12,8 @@ $con = new pdo_db("accounts");
 
 $account = $con->get(["id"=>$_SESSION['id']],["CONCAT(firstname, ' ', lastname) fullname, groups"]);
 
+$desc = $con->getData("SELECT id, description FROM groups WHERE id = ".$account[0]['groups']);
+
 $avatar = "angular/modules/account/avatar.png";
 
 $con->table = "groups";
@@ -35,6 +37,7 @@ $profile = array(
 	"picture"=>$avatar,
 	"groups"=>$account[0]['groups'],
 	"pages_access"=>$pages_access,
+	"desc"=>$desc[0],
 );
 
 echo json_encode($profile);
