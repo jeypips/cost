@@ -3,10 +3,10 @@
 	<div class="col-md-10">
 		<ol class="breadcrumb">
 			<li>
-				<a href="#">Cost Sheet</a>
+				<a href="index.php">Cost Sheet</a>
 			</li>
 			<li>
-				<a href="#">Maintenance</a>
+				<a href="accounts.php">Maintenance</a>
 			</li>
 			<li class="active">
 				Accounts
@@ -38,7 +38,7 @@
 				<td>{{$index+1}}</td>
 				<td>{{a.fullname}}</td>
 				<td>{{a.username}}</td>
-				<td>{{a.groups}}</td>
+				<td>{{a.groups.description}}</td>
 				<td>{{a.date_added}}</td>
 				<td>
 					<a ng-click="app.account(this,a)" class="table-action-btn" style="cursor: pointer;"><i class="md md-edit"></i></a>

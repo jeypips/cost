@@ -106,7 +106,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		self.save = function(scope) {
 			
 			if (validate(scope)){ 
-			growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Please complete required fields.');
+			growl.show('btn btn-danger',{from: 'top', amount: 55},'Please complete required fields.');
 			return;
 			};
 			
@@ -120,10 +120,10 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				if (scope.group.id == 0) {
 					scope.group.id = response.data;
 					
-					growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully added.');
+					growl.show('btn btn-default',{from: 'top', amount: 55},'Group Information successfully added.');
 						
 					}	else{
-						growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully updated.');
+						growl.show('btn btn-default',{from: 'top', amount: 55},'Group Information successfully updated.');
 					};
 					
 					mode(scope,scope.group)
@@ -195,7 +195,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 
 					self.list(scope);
 					
-					growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully deleted.');
+					growl.show('btn btn-danger',{from: 'top', amount: 55},'Group Information successfully deleted.');
 					
 				}, function myError(response) {
 					 

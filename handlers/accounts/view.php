@@ -12,6 +12,9 @@ $con = new pdo_db();
 
 $account = $con->getData("SELECT * FROM accounts WHERE id = $_POST[id]");
 
+$group = $con->getData("SELECT id, description FROM groups WHERE id = ".$account[0]['groups']);
+$account[0]['groups'] = $group[0];	
+
 echo json_encode($account[0]);
 
 ?>

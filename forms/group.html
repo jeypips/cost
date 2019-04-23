@@ -26,16 +26,18 @@
 		<form name="formHolder.group" id="formHolder.group" novalidate autocomplete="off">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.group.name.$touched && formHolder.group.name.$invalid}">
 						<div class="form-group">
 							<label>Group Name</label>
-							<input type="text" class="form-control" name="name" ng-model="group.name" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="name" ng-model="group.name" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.group.name.$touched && formHolder.group.name.$invalid">This field is required</span>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.group.description.$touched && formHolder.group.description.$invalid}">
 						<div class="form-group">
 							<label>Group Description</label>
-							<input type="text" class="form-control" name="description" ng-model="group.description" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="description" ng-model="group.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.group.description.$touched && formHolder.group.description.$invalid">This field is required</span>
 						</div>
 					</div>
 				</div>

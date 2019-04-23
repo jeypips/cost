@@ -26,6 +26,20 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 		};
 		
+		function groups(scope) {
+			
+			$http({
+				method: 'POST',
+				url: 'api/suggestions/groups.php'
+			}).then(function mySucces(response) {
+				
+				scope.groups = response.data;
+				
+			},function myError(response) {
+				
+			});
+			
+		};	
 		function mode(scope,row) {
 			
 			if (row == null) {
@@ -106,7 +120,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		self.save = function(scope) {
 			
 			if (validate(scope)){ 
-			growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Please complete required fields.');
+			growl.show('btn btn-danger',{from: 'top', amount: 55},'Please complete required fields.');
 			return;
 			};
 			
@@ -120,10 +134,10 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				if (scope.account.id == 0) {
 					scope.account.id = response.data;
 					
-					growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully added.');
+					growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully added.');
 						
 					}	else{
-						growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully updated.');
+						growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully updated.');
 					};
 					
 					mode(scope,scope.account)
@@ -145,6 +159,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.account.id = 0;
 			
 			mode(scope,row);
+			
+			$timeout(function() { groups(scope); },200);
 			
 			$('#content').load('forms/account.html',function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },200);
@@ -172,6 +188,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				
 			};
 			
+			$timeout(function() { bui.hide(); },100);
+			
 		}; 
 		
 		
@@ -190,7 +208,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 
 					self.list(scope);
 					
-					growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully deleted.');
+					growl.show('btn btn-danger',{from: 'top', amount: 55},'Account Information successfully deleted.');
 					
 				}, function myError(response) {
 					 

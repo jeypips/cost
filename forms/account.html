@@ -26,44 +26,50 @@
 		<form name="formHolder.account" id="formHolder.account" novalidate autocomplete="off">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.firstname.$touched && formHolder.account.firstname.$invalid}">
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" class="form-control" name="firstname" ng-model="account.firstname" placeholder="First name" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="firstname" ng-model="account.firstname" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.account.firstname.$touched && formHolder.account.firstname.$invalid">This field is required</span>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.middlename.$touched && formHolder.account.middlename.$invalid}">
 						<div class="form-group">
 							<label>Middle Name</label>
-							<input type="text" class="form-control" placeholder="Middle name" ng-model="account.middlename" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="middlename" ng-model="account.middlename" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.account.middlename.$touched && formHolder.account.middlename.$invalid">This field is required</span>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.lastname.$touched && formHolder.account.lastname.$invalid}">
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" class="form-control" placeholder="Last name" ng-model="account.lastname" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="lastname" ng-model="account.lastname" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.account.lastname.$touched && formHolder.account.lastname.$invalid">This field is required</span>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.username.$touched && formHolder.account.username.$invalid}">
 						<div class="form-group">
 							<label>Username</label>
-							<input type="text" class="form-control" placeholder="Username" ng-model="account.username" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" ng-model="account.username" name="username" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.account.username.$touched && formHolder.account.username.$invalid">This field is required</span>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.password.$touched && formHolder.account.password.$invalid}">
 						<div class="form-group">
 							<label>Password</label>
-							<input type="password" class="form-control" placeholder="Password" ng-model="account.password" ng-disabled="controls.ok.btn">
+							<input type="password" class="form-control" ng-model="account.password" name="password" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.account.password.$touched && formHolder.account.password.$invalid">This field is required</span>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.groups.$touched && formHolder.account.groups.$invalid}">
 						<div class="form-group">
 							<label>Groups</label>
-							<input type="text" class="form-control" placeholder="Groups" ng-model="account.groups" ng-disabled="controls.ok.btn">
+							<select class="form-control" ng-model="account.groups" name="groups" ng-options="group.description for group in groups track by group.id" ng-disabled="controls.ok.btn" required></select>
+							<span class="help-block" ng-show="formHolder.account.groups.$touched && formHolder.account.groups.$invalid">This field is required</span>
 						</div>
 					</div>
 				</div>

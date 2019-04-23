@@ -3,10 +3,10 @@
 	<div class="col-md-10">
 		<ol class="breadcrumb">
 			<li>
-				<a href="#">Cost Sheet</a>
+				<a href="index.php">Cost Sheet</a>
 			</li>
 			<li>
-				<a href="#">Maintenance</a>
+				<a href="groups.php">Maintenance</a>
 			</li>
 			<li class="active">
 				Groups
@@ -37,8 +37,8 @@
 				<td>{{g.name}}</td>
 				<td>{{g.description}}</td>
 				<td>
-					<a ng-click="app.group(this,a)" class="table-action-btn" style="cursor: pointer;"><i class="md md-edit"></i></a>
-					<a ng-click="app.delete(this,a)" class="table-action-btn" style="cursor: pointer;"><i class="md md-close"></i></a>
+					<a ng-click="app.group(this,g)" class="table-action-btn" style="cursor: pointer;"><i class="md md-edit"></i></a>
+					<a ng-click="app.delete(this,g)" class="table-action-btn" style="cursor: pointer;"><i class="md md-close"></i></a>
 				</td>
 			</tr>
 		  </tbody>
