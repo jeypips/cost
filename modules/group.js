@@ -19,10 +19,10 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				},
 			};
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.group = {};
+			scope.group.id = 0;
 			
-			scope.accounts = []; // list
+			scope.groups = []; // list
 			
 		};
 		
@@ -46,15 +46,15 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 			bui.show();
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.group = {};
+			scope.group.id = 0;
 			
 			$http({
 			  method: 'POST',
-			  url: 'handlers/accounts/list.php',
+			  url: 'handlers/groups/list.php',
 			}).then(function mySucces(response) {
 				
-				scope.accounts = response.data;
+				scope.groups = response.data;
 				
 				bui.hide();
 				
@@ -65,11 +65,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			});
 			//
 
-			$('#content').load('lists/accounts.html', function() {
+			$('#content').load('lists/groups.html', function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },100);								
 				// instantiate datable
 				$timeout(function() {
-					$('#user_table').DataTable({
+					$('#group_table').DataTable({
 						"ordering": false
 					});	
 				},200);
@@ -79,7 +79,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		
 		function validate(scope) {
 			
-			var controls = scope.formHolder.account.$$controls;
+			var controls = scope.formHolder.group.$$controls;
 			
 			angular.forEach(controls,function(elem,i) {
 				
@@ -87,7 +87,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 									
 			});
 
-			return scope.formHolder.account.$invalid;
+			return scope.formHolder.group.$invalid;
 			
 		};
 		
@@ -112,21 +112,21 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 			$http({
 			  method: 'POST',
-			  url: 'handlers/accounts/save.php',
-			  data: {account: scope.account}
+			  url: 'handlers/groups/save.php',
+			  data: {group: scope.group, privileges: scope.privileges}
 			  
 			}).then(function mySucces(response) {
 				
-				if (scope.account.id == 0) {
-					scope.account.id = response.data;
+				if (scope.group.id == 0) {
+					scope.group.id = response.data;
 					
-					growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully added.');
+					growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully added.');
 						
 					}	else{
-						growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully updated.');
+						growl.show('alert alert-success alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully updated.');
 					};
 					
-					mode(scope,scope.account)
+					mode(scope,scope.group)
 					
 
 			}, function myError(response) {
@@ -137,16 +137,18 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 		};	
 	
-		self.account = function(scope,row) {	
+		self.group = function(scope,row) {	
 			
 			bui.show();
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.group = {};
+			scope.group.id = 0;
 			
 			mode(scope,row);
 			
-			$('#content').load('forms/account.html',function() {
+			privileges(scope);
+			
+			$('#content').load('forms/group.html',function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },200);
 			});
 			
@@ -156,11 +158,12 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				
 				$http({
 				  method: 'POST',
-				  url: 'handlers/accounts/view.php',
+				  url: 'handlers/groups/view.php',
 				  data: {id: row.id}
 				}).then(function mySucces(response) {
 					
-					angular.copy(response.data, scope.account);
+					angular.copy(response.data, scope.group);
+					privileges(scope);
 					
 					bui.hide();
 					
@@ -171,6 +174,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				});
 				
 			};
+			
+				$timeout(function() { bui.hide(); },100);
 			
 		}; 
 		
@@ -184,13 +189,13 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				
 				$http({
 				  method: 'POST',
-				  url: 'handlers/accounts/delete.php',
+				  url: 'handlers/groups/delete.php',
 				  data: {id: [row.id]}
 				}).then(function mySucces(response) {
 
 					self.list(scope);
 					
-					growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Account Information successfully deleted.');
+					growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Group Information successfully deleted.');
 					
 				}, function myError(response) {
 					 
@@ -204,15 +209,23 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 		};
 		
-		/* // show password
-		self.inputType = 'password';
-		  
-		self.hideShowPassword = function(){
-			if (self.inputType == 'password')
-				self.inputType = 'text';
-			else
-				self.inputType = 'password';
-	    }; */
+		function privileges(scope) {
+			
+			$http({
+			  method: 'POST',
+			  url: 'handlers/privileges.php',
+			  data: {id: scope.group.id}
+			}).then(function mySuccess(response) {
+				
+				scope.privileges = angular.copy(response.data);
+				
+			}, function myError(response) {
+				
+				//
+				
+			});				
+			
+		};	
 		
 	};
 	

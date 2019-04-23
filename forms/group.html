@@ -1,0 +1,69 @@
+<div class="row">
+	<h4 class="page-title">&nbsp;&nbsp;Accounts</h4>
+	<div class="col-md-10">
+		<ol class="breadcrumb">
+			<li>
+				<a href="#">Cost Sheet</a>
+			</li>
+			<li>
+				<a href="#">Maintenance</a>
+			</li>
+			<li class="active">
+				Accounts
+			</li>
+		</ol>
+	</div>
+</div>
+		
+<div class="panel panel-border panel-primary">
+	<div class="panel-heading">
+		<h4><i class="icon icon-note"></i> Form
+		<button type="submit" class="btn btn-white waves-effect waves-light pull-right" ng-click="app.edit(this)"><i class="fa" ng-class="{'fa-edit': controls.ok.btn, 'fa-ban': !controls.ok.btn}"></i></button>
+		</h4>
+	</div>
+	<hr>
+	<div class="panel-body">
+		<form name="formHolder.group" id="formHolder.group" novalidate autocomplete="off">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Group Name</label>
+							<input type="text" class="form-control" name="name" ng-model="group.name" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Group Description</label>
+							<input type="text" class="form-control" name="description" ng-model="group.description" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div><hr>
+			<div class="col-md-12">
+				<div class="panel" ng-repeat="p in privileges">
+					<div class="x_title">
+						<label><i class="ti-pencil-alt"></i> {{p.description}}</label>
+						<ul class="nav navbar-right panel_toolbox">
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row">		
+						<div class="col-md-3 form-group" ng-repeat="pp in p.privileges">
+							<label class="switch">
+							  <input type="checkbox" class="flat" ng-checked="pp.value" ng-model="pp.value" ng-disabled="controls.ok.btn">
+							  <span class="slider round"></span>
+							</label>
+							<h6>{{pp.description}}</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<div class="col-md-12">
+			<button type="submit" class="btn btn-white waves-effect waves-light" ng-click="app.cancel(this)" style="margin-right: 5px;">{{controls.cancel.label}}</button>
+			<button type="submit" class="btn btn-default waves-effect waves-light" ng-click="app.save(this)" ng-disabled="controls.ok.btn">{{controls.ok.label}}</button>
+		</div>
+	</div>
+</div>

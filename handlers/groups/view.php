@@ -10,8 +10,8 @@ session_start();
 
 $con = new pdo_db();
 
-$account = $con->getData("SELECT * FROM accounts WHERE id = $_POST[id]");
+$group = $con->getData("SELECT * FROM groups WHERE id = $_POST[id]");
 
-echo json_encode($account[0]);
+echo json_encode($group[0]);
 
 ?>

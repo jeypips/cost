@@ -9,7 +9,7 @@
 
 		<link rel="shortcut icon" href="assets/images/favicon_1.ico">
 
-		<title>Accounts - Cost Sheet System</title>
+		<title>Groups - Cost Sheet System</title>
 		
 		<!-- DataTables -->
         <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -20,6 +20,7 @@
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/switch.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,7 @@
 
 	</head>
 
-	<body class="fixed-left" ng-app="account" ng-controller="accountCtrl" account-profile>
+	<body class="fixed-left" ng-app="group" ng-controller="groupCtrl" account-profile>
 
 		<!-- Begin page -->
 		<div id="wrapper">
@@ -92,8 +93,8 @@
 							<li class="has_sub">
                                 <a href="#" class="waves-effect active"><i class="ti-settings"></i> <span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
-                                    <li class="active"><a href="accounts.php">Accounts</a></li>
-                                    <li><a href="groups.php" class="waves-effect">Groups</a></li>
+                                    <li><a href="accounts.php">Accounts</a></li>
+                                    <li class="active"><a href="groups.php" class="waves-effect">Groups</a></li>
                                 </ul>
                             </li>
 						</ul>
@@ -161,10 +162,10 @@
 		<script src="angular/modules/account/account.js"></script>
 		<script src="angular/modules/validation/validate.js"></script>
 		<script src="angular/modules/post/window-open-post.js"></script>	
-		<script src="modules/account.js"></script>
+		<script src="modules/group.js"></script>
 
 		<!-- controller -->
-		<script src="controllers/account.js"></script>
+		<script src="controllers/group.js"></script>
 	
 	</body>
 </html>

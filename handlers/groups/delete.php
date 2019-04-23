@@ -8,10 +8,8 @@ require_once '../../db.php';
 
 session_start();
 
-$con = new pdo_db();
+$con = new pdo_db("groups");
 
-$account = $con->getData("SELECT * FROM accounts WHERE id = $_POST[id]");
-
-echo json_encode($account[0]);
+$delete = $con->deleteData(array("id"=>implode(",",$_POST['id'])));	
 
 ?>
