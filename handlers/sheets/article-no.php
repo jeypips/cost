@@ -10,7 +10,7 @@ $insert = $con->insertData(array("article_no"=>""));
 
 $id = $con->insertId;
 
-$article_no = STR_PAD((string)$id,18,"2.71. 011133 / 00",STR_PAD_LEFT);
+$article_no = STR_PAD((string)$id,3,"0",STR_PAD_LEFT);
 
 $article = array("id"=>$id,"article_no"=>$article_no);
 

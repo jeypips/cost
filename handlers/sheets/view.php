@@ -12,6 +12,18 @@ $con = new pdo_db();
 
 $article = $con->getData("SELECT * FROM articles WHERE id = $_POST[id]");
 
+$fabrics = $con->getData("SELECT * FROM fabric WHERE articles_id = ".$article[0]['id']);
+$article[0]['fabrics'] = $fabrics;
+$article[0]['fabrics_dels'] = [];
+
+$threads = $con->getData("SELECT * FROM thread WHERE articles_id = ".$article[0]['id']);
+$article[0]['threads'] = $threads;
+$article[0]['threads_dels'] = [];
+
+$accessories = $con->getData("SELECT * FROM accessory WHERE articles_id = ".$article[0]['id']);
+$article[0]['accessories'] = $accessories;
+$article[0]['accessories_dels'] = [];
+
 echo json_encode($article[0]);
 
 ?>

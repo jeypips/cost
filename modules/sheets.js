@@ -22,6 +22,15 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.article = {};
 			scope.article.id = 0;
 			
+			scope.article.fabrics = [];
+			scope.article.fabrics_dels = [];
+			scope.article.threads = [];
+			scope.article.threads_dels = [];
+			scope.article.accessories = [];
+			scope.article.accessories_dels = [];
+			scope.article.labors = [];
+			scope.article.labors_dels = [];
+			
 			scope.articles = []; // list
 			
 		};
@@ -184,6 +193,18 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.article = {};
 			scope.article.id = 0;
 			
+			scope.article.fabrics = [];
+			scope.article.fabrics_dels = [];
+			
+			scope.article.threads = [];
+			scope.article.threads_dels = [];
+			
+			scope.article.accessories = [];
+			scope.article.accessories_dels = [];
+			
+			scope.article.labors = [];
+			scope.article.labors_dels = [];
+			
 			mode(scope,row);
 			
 			$timeout(function() { if (scope.article.id==0) articleNo(scope); },100);
@@ -245,6 +266,182 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			};
 
 			bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this record?',onOk,function() {});
+			
+		};
+		
+		self.fabric = {
+			
+			add: function(scope) {
+
+				scope.article.fabrics.push({
+					id: 0,
+					articles_id: 0,
+					description: '',
+					quality: '',
+					color: '',
+					qty: '',
+					dimension_w: '',
+					dimension_l: '',
+					fabric_m: '',
+					landed_cost: '',
+					cost: ''
+				});
+
+			},			
+			
+			delete: function(scope,row) {
+				
+				if (row.id > 0) {
+					scope.article.fabrics_dels.push(row.id);
+				};
+				
+				var fabrics = scope.article.fabrics;
+				var index = scope.article.fabrics.indexOf(row);
+				scope.article.fabrics = [];			
+				
+				angular.forEach(fabrics, function(d,i) {
+					
+					if (index != i) {
+						
+						delete d['$$hashKey'];
+						scope.article.fabrics.push(d);
+						
+					};
+					
+				});
+
+			}			
+			
+		};
+		
+		self.thread = {
+			
+			add: function(scope) {
+
+				scope.article.threads.push({
+					id: 0,
+					articles_id: 0,
+					description: '',
+					quality: '',
+					color: '',
+					initial_wt: '',
+					net_wt: '',
+					total_weight: '',
+					landed_cost: '',
+					cost: ''
+				});
+
+			},			
+			
+			delete: function(scope,row) {
+				
+				if (row.id > 0) {
+					scope.article.threads_dels.push(row.id);
+				};
+				
+				var threads = scope.article.threads;
+				var index = scope.article.threads.indexOf(row);
+				scope.article.threads = [];			
+				
+				angular.forEach(threads, function(d,i) {
+					
+					if (index != i) {
+						
+						delete d['$$hashKey'];
+						scope.article.threads.push(d);
+						
+					};
+					
+				});
+
+			}			
+			
+		};
+		
+		self.accessory = {
+			
+			add: function(scope) {
+
+				scope.article.accessories.push({
+					id: 0,
+					articles_id: 0,
+					item: '',
+					color: '',
+					size: '',
+					consumption: '',
+					landed_cost: '',
+					cost: ''
+				});
+
+			},			
+			
+			delete: function(scope,row) {
+				
+				if (row.id > 0) {
+					scope.article.accessories_dels.push(row.id);
+				};
+				
+				var accessories = scope.article.accessories;
+				var index = scope.article.accessories.indexOf(row);
+				scope.article.accessories = [];			
+				
+				angular.forEach(accessories, function(d,i) {
+					
+					if (index != i) {
+						
+						delete d['$$hashKey'];
+						scope.article.accessories.push(d);
+						
+					};
+					
+				});
+
+			}			
+			
+		};
+		
+		self.labor = {
+			
+			add: function(scope) {
+
+				scope.article.labors.push({
+					id: 0,
+					articles_id: 0,
+					department: '',
+					process: '',
+					special_instruction: '',
+					operator: '',
+					approved_time: '',
+					tl_min: '',
+					hour: '',
+					min: '',
+					sec: ''
+				});
+
+			},			
+			
+			delete: function(scope,row) {
+				
+				if (row.id > 0) {
+					scope.article.labors_dels.push(row.id);
+				};
+				
+				var labors = scope.article.labors;
+				var index = scope.article.labors.indexOf(row);
+				scope.article.labors = [];			
+				
+				angular.forEach(labors, function(d,i) {
+					
+					if (index != i) {
+						
+						delete d['$$hashKey'];
+						scope.article.labors.push(d);
+						
+					};
+					
+				});
+
+			}			
 			
 		};
 		

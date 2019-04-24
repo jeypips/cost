@@ -14,7 +14,12 @@
 		</ol>
 	</div>
 </div> -->
-		
+<style>
+th {
+	font-size: 11px;
+	align: center;
+}
+</style>
 <div class="panel panel-border panel-primary">
 	<div class="panel-heading">
 		<h4><i class="icon icon-note"></i> Form
@@ -161,52 +166,211 @@
 						<div class="panel-body">
 							<ul class="nav nav-pills m-b-30">
 								<li class="active">
-									<a href="#navpills-11" data-toggle="tab" aria-expanded="true">Fabric Consumption</a>
+									<a href="#fabric" data-toggle="tab" aria-expanded="true">Fabric Consumption</a>
 								</li>
 								<li class="">
-									<a href="#navpills-21" data-toggle="tab" aria-expanded="false">Thread Consumption</a>
+									<a href="#thread" data-toggle="tab" aria-expanded="false">Thread Consumption</a>
 								</li>
 								<li class="">
-									<a href="#navpills-31" data-toggle="tab" aria-expanded="false">Accessory Consumption</a>
+									<a href="#accessory" data-toggle="tab" aria-expanded="false">Accessory Consumption</a>
 								</li>
 								<li class="">
 									<a href="#labor" data-toggle="tab" aria-expanded="false">Labor Consumption</a>
 								</li>
 							</ul>
+							
 							<div class="tab-content br-n pn">
-								<div id="navpills-11" class="tab-pane active">
+								<div id="fabric" class="tab-pane active">
 									<div class="row">
-										<div class="col-md-8">
-											<p>
-												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-											</p>
+										<div class="col-md-12">
+											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.fabric.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
 										</div>
-										<div class="col-md-4">
-											<img src="assets/images/small/img1.jpg" class="img-responsive thumbnail m-r-15">
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th colspan="2">Dimension</th>
+														<th>Fabric</th>
+														<th>Landed Cost</th>
+														<th>&nbsp;</th>
+													</tr>
+													<tr>
+														<th>#</th>
+														<th>Description</th>
+														<th>Quality</th>
+														<th>Color</th>
+														<th>QTY</th>
+														<th>W</th>
+														<th>L</th>
+														<th>Consumption (m²)</th>
+														<th>m² (USD)</th>
+														<th>Cost (USD)</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="af in article.fabrics">
+														<td>{{$index+1}}</td>
+														<td><input type="text" class="form-control" name="description{{$index}}" ng-model="af.description" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="quality{{$index}}" ng-model="af.quality" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="color{{$index}}" ng-model="af.color" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="qty{{$index}}" ng-model="af.qty" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="dimension_w{{$index}}" ng-model="af.dimension_w" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="dimension_l{{$index}}" ng-model="af.dimension_l" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="fabric_m{{$index}}" ng-model="af.fabric_m" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="landed_cost{{$index}}" ng-model="af.landed_cost" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="cost{{$index}}" ng-model="af.cost" ng-disabled="controls.ok.btn"></td>
+														<td><button class="btn btn-danger" ng-click="app.fabric.delete(this,af)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
-								<div id="navpills-21" class="tab-pane">
+								<div id="thread" class="tab-pane">
 									<div class="row">
-										<div class="col-md-8">
-											<p>
-												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-											</p>
+										<div class="col-md-12">
+											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.thread.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
 										</div>
-										<div class="col-md-4">
-											<img src="assets/images/small/img2.jpg" class="img-responsive thumbnail mr25">
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th colspan="2">Combination</th>
+														<th>Initial WT.</th>
+														<th>Net WT.</th>
+														<th>Total</th>
+														<th>Landed</th>
+														<th>&nbsp;</th>
+													</tr>
+													<tr>
+														<th>#</th>
+														<th>Description</th>
+														<th>Quality</th>
+														<th>Color</th>
+														<th>(In grams)</th>
+														<th>(In grams)</th>
+														<th>Weight (g)</th>
+														<th>Cost (USD)</th>
+														<th>Cost (USD)</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="at in article.threads">
+														<td>{{$index+1}}</td>
+														<td><input type="text" class="form-control" name="description{{$index}}" ng-model="at.description" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="quality{{$index}}" ng-model="at.quality" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="color{{$index}}" ng-model="at.color" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="initial_wt{{$index}}" ng-model="at.initial_wt" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="net_wt{{$index}}" ng-model="at.net_wt" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="total_weight{{$index}}" ng-model="at.total_weight" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="landed_cost{{$index}}" ng-model="at.landed_cost" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="cost{{$index}}" ng-model="at.cost" ng-disabled="controls.ok.btn"></td>
+														<td><button class="btn btn-danger" ng-click="app.thread.delete(this,at)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
-								<div id="navpills-31" class="tab-pane">
+								<div id="accessory" class="tab-pane">
 									<div class="row">
-										<div class="col-md-8">
-											<p>
-												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-											</p>
+										<div class="col-md-12">
+											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.accessory.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
 										</div>
-										<div class="col-md-4">
-											<img src="assets/images/small/img3.jpg" class="img-responsive thumbnail mr25">
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>#</th>
+														<th>Item</th>
+														<th>Color</th>
+														<th>Soze (with unit)</th>
+														<th>Consumption (with unit)</th>
+														<th>Landed Cost (USD/Unit)</th>
+														<th>Cost (USD)</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="aa in article.accessories">
+														<td>{{$index+1}}</td>
+														<td><input type="text" class="form-control" name="item{{$index}}" ng-model="aa.item" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="color{{$index}}" ng-model="aa.color" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="size{{$index}}" ng-model="aa.size" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="consumption{{$index}}" ng-model="aa.consumption" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="landed_cost{{$index}}" ng-model="aa.landed_cost" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="cost{{$index}}" ng-model="aa.cost" ng-disabled="controls.ok.btn"></td>
+														<td><button class="btn btn-danger" ng-click="app.accessory.delete(this,aa)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div id="labor" class="tab-pane">
+									<div class="row">
+										<div class="col-md-12">
+											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.accessory.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<table class="table table-bordered table-striped">
+												<thead>
+													<tr>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>&nbsp;</th>
+														<th>TL</th>
+														<th colspan="3">Actual Time</th>
+														<th>&nbsp;</th>
+													</tr>
+													<tr>
+														<th>Department</th>
+														<th>Process</th>
+														<th>Special Instruction/s</th>
+														<th>Operator</th>
+														<th>Approved Time)</th>
+														<th>(min)</th>
+														<th>Hour</th>
+														<th>Min</th>
+														<th>Sec</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="al in article.labors">
+														<td>{{$index+1}}</td>
+														<td><input type="text" class="form-control" name="department{{$index}}" ng-model="al.department" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="process{{$index}}" ng-model="al.process" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="special_instruction{{$index}}" ng-model="al.special_instruction" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="operator{{$index}}" ng-model="al.operator" ng-disabled="controls.ok.btn"></td>
+														<td><input type="date" class="form-control" name="approved_time{{$index}}" ng-model="al.approved_time" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="tl_min{{$index}}" ng-model="al.tl_min" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="hour{{$index}}" ng-model="al.hour" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="min{{$index}}" ng-model="al.min" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="sec{{$index}}" ng-model="al.sec" ng-disabled="controls.ok.btn"></td>
+														<td><button class="btn btn-danger" ng-click="app.thread.delete(this,al)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>
@@ -216,7 +380,6 @@
 				</div>
 			</div>
 		</form>
-		<hr>
 		<div class="col-md-12">
 			<button type="submit" class="btn btn-white waves-effect waves-light" ng-click="app.cancel(this)" style="margin-right: 5px;">{{controls.cancel.label}}</button>
 			<button type="submit" class="btn btn-default waves-effect waves-light" ng-click="app.save(this)" ng-disabled="controls.ok.btn">{{controls.ok.label}}</button>

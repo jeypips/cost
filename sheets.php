@@ -43,7 +43,7 @@
 	<body class="fixed-left" ng-app="sheets" ng-controller="sheetsCtrl" account-profile>
 
 		<!-- Begin page -->
-		<div id="wrapper">
+		<div id="wrapper" class="enlarged forced">
 
             <!-- Top Bar Start -->
             <div class="topbar">
