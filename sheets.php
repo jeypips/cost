@@ -40,6 +40,7 @@
 			cursor: default;
 		}
 	</style>
+
 	<body class="fixed-left" ng-app="sheets" ng-controller="sheetsCtrl" account-profile>
 
 		<!-- Begin page -->
@@ -193,6 +194,8 @@
 
 		<!-- controller -->
 		<script src="controllers/sheets.js"></script>
+		
+	
 	
 	</body>
 </html>

@@ -17,7 +17,7 @@
 <style>
 th {
 	font-size: 11px;
-	align: center;
+	text-align: center;
 }
 </style>
 <div class="panel panel-border panel-primary">
@@ -177,6 +177,9 @@ th {
 								<li class="">
 									<a href="#labor" data-toggle="tab" aria-expanded="false">Labor Consumption</a>
 								</li>
+								<li class="pull-right">
+									<button type="submit" class="btn btn-white waves-effect waves-light pull-right" ng-click="app.edit(this)"><i class="fa" ng-class="{'fa-edit': controls.ok.btn, 'fa-ban': !controls.ok.btn}"></i></button>
+								</li>
 							</ul>
 							
 							<div class="tab-content br-n pn">
@@ -196,9 +199,10 @@ th {
 														<th>&nbsp;</th>
 														<th>&nbsp;</th>
 														<th>&nbsp;</th>
-														<th colspan="2">Dimension</th>
+														<th colspan="2" align="center">Dimension</th>
 														<th>Fabric</th>
 														<th>Landed Cost</th>
+														<th>&nbsp;</th>
 														<th>&nbsp;</th>
 													</tr>
 													<tr>
@@ -252,6 +256,7 @@ th {
 														<th>Net WT.</th>
 														<th>Total</th>
 														<th>Landed</th>
+														<th>&nbsp;</th>
 														<th>&nbsp;</th>
 													</tr>
 													<tr>

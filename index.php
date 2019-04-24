@@ -152,7 +152,6 @@
 									</div>
 									<div class="panel-body">
 										<p>Introducing Cost Sheet System! </p>
-										
 									</div>
 								</div>
 							</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2019 at 05:04 PM
+-- Generation Time: Apr 24, 2019 at 01:00 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -89,6 +89,13 @@ CREATE TABLE `articles` (
   `process_by` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `articles`
+--
+
+INSERT INTO `articles` (`id`, `article_no`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
+(1, '2.71. 011133 / 001', 'asd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -102,7 +109,8 @@ CREATE TABLE `fabric` (
   `quality` varchar(50) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
   `qty` varchar(50) DEFAULT NULL,
-  `dimension` varchar(5) DEFAULT NULL,
+  `dimension_w` varchar(10) DEFAULT NULL,
+  `dimension_l` varchar(10) DEFAULT NULL,
   `fabric_m` varchar(50) DEFAULT NULL,
   `landed_cost` varchar(50) DEFAULT NULL,
   `cost` varchar(50) DEFAULT NULL
@@ -158,6 +166,7 @@ CREATE TABLE `labor` (
 CREATE TABLE `thread` (
   `id` int(11) NOT NULL,
   `articles_id` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `quality` varchar(50) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
   `initial_wt` varchar(50) DEFAULT NULL,
@@ -226,7 +235,7 @@ ALTER TABLE `thread`
 -- AUTO_INCREMENT for table `accessory`
 --
 ALTER TABLE `accessory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `accounts`
 --
@@ -236,17 +245,17 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `fabric`
 --
 ALTER TABLE `fabric`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `labor`
 --
@@ -256,7 +265,7 @@ ALTER TABLE `labor`
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
