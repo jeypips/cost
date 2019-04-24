@@ -35,9 +35,6 @@
 		.img-circle {
 			width: 50px;			
 		}
-		.company {
-			width: 250px;			
-		}
 		.not-active {
 			pointer-events: none;
 			cursor: default;
@@ -78,8 +75,8 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{profile.picture}}" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="ti-settings m-r-5"></i> Settings</a></li>
-                                        <li><a href="javascript:;" logout-account><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                                        <li><a href="#"><i class="md md-face-unlock"></i> Profile</a></li>
+                                        <li><a href="javascript:;" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>

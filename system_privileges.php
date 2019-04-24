@@ -9,6 +9,16 @@ define('system_privileges', array(
 		),
 	),
 	array(
+		"id"=>"sheets",
+		"description"=>"Sheets",
+		"privileges"=>array(
+			array("id"=>1,"description"=>"Show Sheets","value"=>false),
+			array("id"=>2,"description"=>"Add Sheets","value"=>false),
+			array("id"=>3,"description"=>"Edit Sheets","value"=>false),
+			array("id"=>4,"description"=>"Delete Sheets","value"=>false),
+		),
+	),
+	array(
 		"id"=>"maintenance",
 		"description"=>"Maintenance",
 		"privileges"=>array(

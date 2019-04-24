@@ -9,7 +9,7 @@
 
 		<link rel="shortcut icon" href="assets/images/logo.png">
 
-		<title>Groups - Cost Sheet System</title>
+		<title>Sheets - Cost Sheet System</title>
 		
 		<!-- DataTables -->
         <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,6 @@
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/switch.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +40,7 @@
 			cursor: default;
 		}
 	</style>
-	<body class="fixed-left" ng-app="group" ng-controller="groupCtrl" account-profile>
+	<body class="fixed-left" ng-app="sheets" ng-controller="sheetsCtrl" account-profile>
 
 		<!-- Begin page -->
 		<div id="wrapper">
@@ -116,13 +115,13 @@
                                 <li><a href="index.php" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
 							<li class="has_sub">
-                                <li><a href="sheets.php" class="waves-effect"><i class="ti-files"></i><span> Sheets </span></a></li>
+                                <li><a href="sheets.php" class="waves-effect active"><i class="ti-files"></i><span> Sheets </span></a></li>
                             </li>
 							<li class="has_sub">
-                                <a href="#" class="waves-effect active"><i class="ti-settings"></i> <span> Maintenance </span> </a>
+                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>
-                                    <li class="active"><a href="groups.php" class="waves-effect">Groups</a></li>
+                                    <li><a href="groups.php" class="waves-effect">Groups</a></li>
                                 </ul>
                             </li>
 						</ul>
@@ -190,10 +189,10 @@
 		<script src="angular/modules/account/account.js"></script>
 		<script src="angular/modules/validation/validate.js"></script>
 		<script src="angular/modules/post/window-open-post.js"></script>	
-		<script src="modules/group.js"></script>
+		<script src="modules/sheets.js"></script>
 
 		<!-- controller -->
-		<script src="controllers/group.js"></script>
+		<script src="controllers/sheets.js"></script>
 	
 	</body>
 </html>

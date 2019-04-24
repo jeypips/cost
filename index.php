@@ -35,7 +35,7 @@
 			width: 50px;			
 		}
 		.company {
-			width: 250px;			
+			width: 200px;			
 		}
 		.not-active {
 			pointer-events: none;
@@ -67,7 +67,9 @@
                                 </button>
                                 <span class="clearfix"></span>
                             </div>
-
+							<div class="navbar-left app-search pull-left hidden-xs">
+			                     <h5 class="portlet-title" style="color:white;">Dashboard</h5>
+			                </div>
                             <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="hidden-xs">
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
@@ -75,8 +77,8 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{profile.picture}}" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="ti-settings m-r-5"></i> Settings</a></li>
-                                        <li><a href="javascript:;" logout-account><i class="ti-power-off m-r-5"></i> Logout</a></li>
+                                        <li><a href="#"><i class="md md-face-unlock"></i> Profile</a></li>
+                                        <li><a href="javascript:;" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -139,20 +141,28 @@
                     <div class="container">
 
                         <!-- Page-Title -->
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h4 class="page-title">Dashboard</h4>
-								<p class="text-muted page-title-alt">Welcome to Cost Sheet System!</p>
-                            </div>
-							<div class="col-md-4">
-								<img src="assets/images/logo_company.png" class="company pull-right" alt="Logo">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-border panel-inverse">
+									<div class="panel-heading">
+										<h3 class="panel-title ng-binding">WELCOME
+											<img src="assets/images/logo_company.png" class="company pull-right" alt="Logo">
+										</h3>
+										
+									</div>
+									<div class="panel-body">
+										<p>Introducing Cost Sheet System! </p>
+										
+									</div>
+								</div>
 							</div>
-                        </div>
+							
+						</div>
                     </div> <!-- container -->
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                   Copyright &copy; <b>Cost Sheet System</b> <?php echo date("Y"); ?>
+                   Copyright &copy; <b><?php echo date("Y"); ?></b> TARA DESGIN (PHILS). INC COSTSHEET
                 </footer>
 
             </div>

@@ -1,0 +1,225 @@
+<!-- <div class="row">
+	<h4 class="page-title">&nbsp;&nbsp;Accounts</h4>
+	<div class="col-md-10">
+		<ol class="breadcrumb">
+			<li>
+				<a href="#">Cost Sheet</a>
+			</li>
+			<li>
+				<a href="#">Maintenance</a>
+			</li>
+			<li class="active">
+				Accounts
+			</li>
+		</ol>
+	</div>
+</div> -->
+		
+<div class="panel panel-border panel-primary">
+	<div class="panel-heading">
+		<h4><i class="icon icon-note"></i> Form
+		<button type="submit" class="btn btn-white waves-effect waves-light pull-right" ng-click="app.edit(this)"><i class="fa" ng-class="{'fa-edit': controls.ok.btn, 'fa-ban': !controls.ok.btn}"></i></button>
+		</h4>
+	</div>
+	<hr>
+	<div class="panel-body">
+		<form name="formHolder.article" id="formHolder.article" novalidate autocomplete="off">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Article Number</label>
+							<input type="text" class="form-control" name="article_no" ng-model="article.article_no" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Description</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Color</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Design Name</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Raw Size (cm)</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Date</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Etimate</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Pattern Date</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Final Raw Size (if w/ revisions)</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Customer</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Full Width of Fabric(cm)</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Desired Size (cm)</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Finished Size (cm)</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+						<div class="form-group">
+							<label>Full Width of Desired Size (cm)</label>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
+							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Shrinkage %</label>
+							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel">
+						<div class="panel-heading"></div>
+						<div class="panel-body">
+							<ul class="nav nav-pills m-b-30">
+								<li class="active">
+									<a href="#navpills-11" data-toggle="tab" aria-expanded="true">Fabric Consumption</a>
+								</li>
+								<li class="">
+									<a href="#navpills-21" data-toggle="tab" aria-expanded="false">Thread Consumption</a>
+								</li>
+								<li class="">
+									<a href="#navpills-31" data-toggle="tab" aria-expanded="false">Accessory Consumption</a>
+								</li>
+								<li class="">
+									<a href="#labor" data-toggle="tab" aria-expanded="false">Labor Consumption</a>
+								</li>
+							</ul>
+							<div class="tab-content br-n pn">
+								<div id="navpills-11" class="tab-pane active">
+									<div class="row">
+										<div class="col-md-8">
+											<p>
+												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</p>
+										</div>
+										<div class="col-md-4">
+											<img src="assets/images/small/img1.jpg" class="img-responsive thumbnail m-r-15">
+										</div>
+									</div>
+								</div>
+								<div id="navpills-21" class="tab-pane">
+									<div class="row">
+										<div class="col-md-8">
+											<p>
+												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</p>
+										</div>
+										<div class="col-md-4">
+											<img src="assets/images/small/img2.jpg" class="img-responsive thumbnail mr25">
+										</div>
+									</div>
+								</div>
+								<div id="navpills-31" class="tab-pane">
+									<div class="row">
+										<div class="col-md-8">
+											<p>
+												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+											</p>
+										</div>
+										<div class="col-md-4">
+											<img src="assets/images/small/img3.jpg" class="img-responsive thumbnail mr25">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<div class="col-md-12">
+			<button type="submit" class="btn btn-white waves-effect waves-light" ng-click="app.cancel(this)" style="margin-right: 5px;">{{controls.cancel.label}}</button>
+			<button type="submit" class="btn btn-default waves-effect waves-light" ng-click="app.save(this)" ng-disabled="controls.ok.btn">{{controls.ok.label}}</button>
+		</div>
+	</div>
+</div>
