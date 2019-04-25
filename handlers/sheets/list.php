@@ -7,9 +7,12 @@ require_once '../../db.php';
 $con = new pdo_db("articles");
 
 $articles = $con->getData("SELECT *,DATE_FORMAT(date, '%M %d, %Y') date FROM articles");
-
-$desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$articles[0]['description']);
-$articles[0]['description'] = $desc[0];
+foreach($articles as $key => $ar){
+	
+	$desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$ar['description']);
+	$articles[$key]['description'] = $desc[0];	
+	
+};
 
 echo json_encode($articles);
 

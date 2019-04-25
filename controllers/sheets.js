@@ -10,4 +10,6 @@ app.controller('sheetsCtrl',function($scope,app) {
 	
 	$scope.app = app;
 	
+	$scope.views.profilePicture = 'pictures/default.jpg';
+	
 });

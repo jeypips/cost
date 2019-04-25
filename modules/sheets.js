@@ -1,4 +1,4 @@
-angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui) {
+angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui,fileUpload) {
 	
 	function app() {
 		
@@ -6,6 +6,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		
 		self.data = function(scope) { // initialize data			
 			
+			scope.views = {};
 			scope.formHolder = {};
 			
 			scope.controls = {
@@ -32,6 +33,31 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.article.labors_dels = [];
 			
 			scope.articles = []; // list
+			
+			
+		};
+		
+		self.uploadProfilePicture = function(scope) {
+	
+		  /*  if (($scope.personalInfo.empid == '') || ($scope.personalInfo.empid == undefined)) {
+			   
+				bootstrapNotify.show('danger','You must provide employee id first before you can upload profile picture');
+				$scope.frmHolder.personalInfo.empid.$touched = true;
+				return;
+			   
+		   }	 */
+			
+		   // $scope.proPic = null;
+		   var file = scope.views.proPic;
+		   
+		   if (file == undefined) return;
+		   console.log(file);
+		   
+		   var pp = file['name'];
+		   var en = pp.substring(pp.indexOf("."),pp.length);
+
+		   var uploadUrl = "handlers/files.php?r=upload_profile_picture&id="+scope.article.id+"&en="+en;
+		   fileUpload.uploadFileToUrl(file, uploadUrl, scope);
 			
 		};
 		
@@ -173,30 +199,53 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				return;
 			};
 			
-			$http({
-			  method: 'POST',
-			  url: 'handlers/sheets/save.php',
-			  data: {article: scope.article}
-			  
-			}).then(function mySucces(response) {
-				
-				if (scope.article.id == 0) {
-					scope.article.id = response.data;
+			if (scope.controls.ok.label == 'Save') {
+			
+				$http({
+				  method: 'POST',
+				  url: 'handlers/sheets/save.php',
+				  data: {article: scope.article}
+				  
+				}).then(function mySucces(response) {
 					
-					growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully added.');
+					if (scope.article.id == 0) {
+						scope.article.id = response.data;
 						
-					}	else{
-						growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully updated.');
-					};
-					
-					mode(scope,scope.article)
-					
+						growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully added.');
+							
+						}	else{
+							growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully updated.');
+						};
+						
+						mode(scope,scope.article)
+						
 
-			}, function myError(response) {
-				 
-			  // error
+				}, function myError(response) {
+					 
+				  // error
+					
+				});
+			
+			} else { // Update
 				
-			});	
+				$http({
+				  method: 'POST',
+				  url: 'handlers/sheets/save-update.php',
+				  data: {article: scope.article}
+				  
+				}).then(function mySucces(response) {
+					
+					scope.article.id = response.data;					
+					growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully revised.');										
+					mode(scope,scope.article);						
+
+				}, function myError(response) {
+					 
+				  // error
+					
+				});				
+				
+			};
 
 		};
 		
@@ -208,7 +257,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			}).then(function mySucces(response) {
 
 				scope.article.id = response.data.id;
-				scope.article.article_no = response.data.article_no;
+				scope.article.article_no_revision = response.data.article_no_revision;
 
 			}, function myError(response) {
 				
@@ -487,4 +536,59 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 	
 	return new app();
 	
-});
+}).directive('fileModel', ['$parse', function ($parse) {
+	return {
+	   restrict: 'A',
+	   link: function(scope, element, attrs) {
+		  var model = $parse(attrs.fileModel);
+		  var modelSetter = model.assign;
+		  
+		  element.bind('change', function() {
+			 scope.$apply(function(){
+				modelSetter(scope, element[0].files[0]);
+			 });
+		  });
+
+	   }
+	};
+}]).service('fileUpload', ['$http', function ($http) {
+	this.uploadFileToUrl = function(file, uploadUrl, scope) {
+		
+	   var fd = new FormData();
+	   fd.append('file', file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.open("POST", uploadUrl);
+        scope.progressVisible = true;
+        xhr.send(fd);
+	   
+		// upload progress
+		function uploadProgress(evt) {
+			scope.views.showProPicUploadProgress = true;
+			scope.$apply(function(){
+				scope.views.progress = 0;			
+				if (evt.lengthComputable) {
+					scope.views.progress = Math.round(evt.loaded * 100 / evt.total);
+				} else {
+					scope.views.progress = 'unable to compute';
+					scope.views.profilePicture = "img/avatar.png";					
+				}
+			});
+		}
+
+		function uploadComplete(evt) {
+			/* This event is raised when the server send back a response */
+			scope.$apply(function() {
+
+				scope.views.profilePicture = 'pictures/'+scope.article.id+'.jpg';
+				scope.views.showProPicUploadProgress = false;
+
+			});			
+
+			$('#proPic').val(null);
+		}
+
+	}
+}]);

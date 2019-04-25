@@ -31,10 +31,16 @@ th {
 		<form name="formHolder.article" id="formHolder.article" novalidate autocomplete="off">
 			<div class="row">
 				<div class="col-md-6 col-sm-12">
-					<div class="col-md-12">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Article Number</label>
-							<input type="text" class="form-control" name="article_no" ng-model="article.article_no">
+							<input type="text" class="form-control" name="article_no" ng-model="article.article_no" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>&nbsp;</label>
+							<input type="text" class="form-control" name="article_no" ng-model="article.article_no_revision" disabled>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-12">
@@ -128,8 +134,17 @@ th {
 						<div class="form-group">
 						<label>&nbsp;</label>
 							<div class="row">
-								<!-- <button class="btn btn-default"><i class="fa fa-folder-open"></i> Choose file</button> -->
-								<input type="file" id="upload-files">
+								<div class="col-sm-6">
+									<input type="file" name="proPic" id="proPic" file-model="views.proPic">
+								</div>
+								<div class="col-sm-6">
+									<button class="btn btn-primary pull-right" ng-click="app.uploadProfilePicture(this)">Upload</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<img src="{{views.profilePicture}}" alt="image" class="img-responsive img-rounded" width="100%">
+								</div>
 							</div>
 						</div>
 					</div>										

@@ -10,9 +10,10 @@ $insert = $con->insertData(array("article_no"=>""));
 
 $id = $con->insertId;
 
-$article_no = STR_PAD((string)$id,3,"0",STR_PAD_LEFT);
+// STR_PAD((string)$id,5,"/ 00",STR_PAD_LEFT);
+$article_no_revision = "000";
 
-$article = array("id"=>$id,"article_no"=>$article_no);
+$article = array("id"=>$id,"article_no_revision"=>$article_no_revision);
 
 echo json_encode($article);
 
