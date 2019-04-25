@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 24, 2019 at 04:20 PM
+-- Generation Time: Apr 25, 2019 at 04:02 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -59,7 +59,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `password`, `groups`, `date_added`) VALUES
-(1, 'John Paul', 'G', 'Balanon', 'admin', 'admin', 1, '2019-04-22 15:12:50'),
+(1, 'John Paul', 'G', 'Balanon', 'admin', 'wawakw', 1, '2019-04-22 15:12:50'),
 (2, 'Michelle Mae', 'J', 'Esperanza', 'michelle', 'michelle', 1, '2019-04-22 16:30:52'),
 (3, 'Roldan', 'C', 'Castro', 'roldan', 'roldan', 2, '2019-04-23 14:21:05');
 
@@ -72,6 +72,7 @@ INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`,
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL,
   `article_no` varchar(50) DEFAULT NULL,
+  `article_no_revision` varchar(10) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `design_name` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
@@ -86,16 +87,56 @@ CREATE TABLE `articles` (
   `full_width_fabric` varchar(50) DEFAULT NULL,
   `finished_size` varchar(50) DEFAULT NULL,
   `shrinkage` varchar(50) DEFAULT NULL,
-  `process_by` varchar(100) DEFAULT NULL
+  `process_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `article_no`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
-(1, '2.71. 011133 / 001', 'asd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
+(1, '2.71', '000', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(2, '2.71', '100', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, 'Red', NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(3, '2.71', '200', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, 'Blue', NULL, NULL, NULL, NULL, NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`) VALUES
+(1, 'Office 1'),
+(2, 'Office 2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `descriptions`
+--
+
+CREATE TABLE `descriptions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `descriptions`
+--
+
+INSERT INTO `descriptions` (`id`, `name`) VALUES
+(1, 'Pillowcase'),
+(2, 'Duvet Cover'),
+(3, 'Top Sheet/Flat Sheet');
 
 -- --------------------------------------------------------
 
@@ -117,17 +158,14 @@ CREATE TABLE `fabric` (
   `cost` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `files`
+-- Dumping data for table `fabric`
 --
 
-CREATE TABLE `files` (
-  `id` int(11) NOT NULL,
-  `articles_id` int(11) DEFAULT NULL,
-  `file_name` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `fabric` (`id`, `articles_id`, `description`, `quality`, `color`, `qty`, `dimension_w`, `dimension_l`, `fabric_m`, `landed_cost`, `cost`) VALUES
+(1, 1, '1', '', '', '', '', '', '', '', ''),
+(2, 2, '1', '', '', '', '', '', '', '', ''),
+(3, 3, '2', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -163,7 +201,7 @@ CREATE TABLE `labor` (
   `process` varchar(100) DEFAULT NULL,
   `special_instruction` varchar(550) DEFAULT NULL,
   `operator` varchar(100) DEFAULT NULL,
-  `approved_time` datetime DEFAULT NULL,
+  `approved_time` varchar(50) DEFAULT NULL,
   `tl_min` varchar(10) DEFAULT NULL,
   `hour` varchar(10) DEFAULT NULL,
   `min` varchar(10) DEFAULT NULL,
@@ -214,17 +252,23 @@ ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `descriptions`
+--
+ALTER TABLE `descriptions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `fabric`
 --
 ALTER TABLE `fabric`
   ADD PRIMARY KEY (`id`),
   ADD KEY `articles_id` (`articles_id`);
-
---
--- Indexes for table `files`
---
-ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `groups`
@@ -264,17 +308,22 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `descriptions`
+--
+ALTER TABLE `descriptions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `fabric`
 --
 ALTER TABLE `fabric`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `files`
---
-ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `groups`
 --
@@ -284,7 +333,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `labor`
 --
 ALTER TABLE `labor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `thread`
 --
