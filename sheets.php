@@ -192,7 +192,7 @@
 		<script src="angular/modules/blockui/blockui.js"></script>
 		<script src="angular/modules/account/account.js"></script>
 		<script src="angular/modules/validation/validate.js"></script>
-		<script src="angular/modules/post/window-open-post.js"></script>	
+		<script src="angular/modules/post/window-open-post.js"></script>
 		<script src="modules/sheets.js"></script>
 
 		<!-- controller -->

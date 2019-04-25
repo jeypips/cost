@@ -52,9 +52,6 @@ if ($_POST['article']['id']) {
 
 };
 
-/* $uploads = array("files"=>$_POST['article']['files']);	
-unset($_POST['article']['files']); */
-
 //fabric 
 if (count($fabrics_dels)) {
 
@@ -78,12 +75,12 @@ if (count($fabrics)) {
 
 		if ($value['id']) {
 			
-			$fabric_row = $con->updateData($fabrics[$index],'id');
+			$fabric_row = $con->updateObj($fabrics[$index],'id');
 			
 		} else {
 			
 			unset($fabrics[$index]['id']);
-			$fabric_row = $con->insertData($fabrics[$index]);
+			$fabric_row = $con->insertObj($fabrics[$index]);
 			
 		}
 	
@@ -113,12 +110,12 @@ if (count($threads)) {
 
 		if ($value['id']) {
 			
-			$thread_row = $con->updateData($threads[$index],'id');
+			$thread_row = $con->updateObj($threads[$index],'id');
 			
 		} else {
 			
 			unset($threads[$index]['id']);
-			$thread_row = $con->insertData($threads[$index]);
+			$thread_row = $con->insertObj($threads[$index]);
 			
 		}
 	
@@ -148,12 +145,12 @@ if (count($accessories)) {
 
 		if ($value['id']) {
 			
-			$accessory_row = $con->updateData($accessories[$index],'id');
+			$accessory_row = $con->updateObj($accessories[$index],'id');
 			
 		} else {
 			
 			unset($accessories[$index]['id']);
-			$accessory_row = $con->insertData($accessories[$index]);
+			$accessory_row = $con->insertObj($accessories[$index]);
 			
 		}
 	
@@ -183,12 +180,12 @@ if (count($labors)) {
 
 		if ($value['id']) {
 			
-			$labor_row = $con->updateData($labors[$index],'id');
+			$labor_row = $con->updateObj($labors[$index],'id');
 			
 		} else {
 			
 			unset($labors[$index]['id']);
-			$labor_row = $con->insertData($labors[$index]);
+			$labor_row = $con->insertObj($labors[$index]);
 			
 		}
 	

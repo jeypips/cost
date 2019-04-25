@@ -1,4 +1,4 @@
-angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui) {
+angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui) {
 	
 	function app() {
 		
@@ -32,6 +32,36 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.article.labors_dels = [];
 			
 			scope.articles = []; // list
+			
+		};
+		
+		function departments(scope) {
+			
+			$http({
+				method: 'POST',
+				url: 'api/suggestions/departments.php'
+			}).then(function mySucces(response) {
+				
+				scope.departments = response.data;
+				
+			},function myError(response) {
+				
+			});
+			
+		};
+		
+		function descriptions(scope) {
+			
+			$http({
+				method: 'POST',
+				url: 'api/suggestions/descriptions.php'
+			}).then(function mySucces(response) {
+				
+				scope.descriptions = response.data;
+				
+			},function myError(response) {
+				
+			});
 			
 		};
 
@@ -205,6 +235,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.article.labors = [];
 			scope.article.labors_dels = [];
 			
+			$timeout(function() { descriptions(scope); },200);
+			$timeout(function() { departments(scope); },200);
+			
 			mode(scope,row);
 			
 			$timeout(function() { if (scope.article.id==0) articleNo(scope); },100);
@@ -240,7 +273,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 		}; 
 		
-		
+		self.descriptionSelect = function($item, scope) {
+			
+			scope.article.description = $item;
+			
+		};
 		
 		self.delete = function(scope,row) {
 			

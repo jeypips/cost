@@ -34,13 +34,13 @@ th {
 					<div class="col-md-12">
 						<div class="form-group">
 							<label>Article Number</label>
-							<input type="text" class="form-control" name="article_no" ng-model="article.article_no" disabled>
+							<input type="text" class="form-control" name="article_no" ng-model="article.article_no">
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Description</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn">
+							<td><input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" uib-typeahead="d.name for d in descriptions | filter:{name:$viewValue}" typeahead-min-length="1" typeahead-on-select="app.descriptionSelect($item, this)"></td>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-12">
@@ -199,7 +199,7 @@ th {
 												<tbody>
 													<tr ng-repeat="af in article.fabrics">
 														<td>{{$index+1}}</td>
-														<td><input type="text" class="form-control" name="description{{$index}}" ng-model="af.description" ng-disabled="controls.ok.btn"></td>
+														<td><select class="form-control" name="description{{$index}}" ng-model="af.description" ng-disabled="controls.ok.btn" ng-options="d.name for d in descriptions track by d.id"></select></td>
 														<td><input type="text" class="form-control" name="quality{{$index}}" ng-model="af.quality" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="color{{$index}}" ng-model="af.color" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="qty{{$index}}" ng-model="af.qty" ng-disabled="controls.ok.btn"></td>
@@ -252,7 +252,7 @@ th {
 												<tbody>
 													<tr ng-repeat="at in article.threads">
 														<td>{{$index+1}}</td>
-														<td><input type="text" class="form-control" name="description{{$index}}" ng-model="at.description" ng-disabled="controls.ok.btn"></td>
+														<td><select class="form-control" name="description{{$index}}" ng-model="at.description" ng-disabled="controls.ok.btn" ng-options="d.name for d in descriptions track by d.id"></select></td>
 														<td><input type="text" class="form-control" name="quality{{$index}}" ng-model="at.quality" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="color{{$index}}" ng-model="at.color" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="initial_wt{{$index}}" ng-model="at.initial_wt" ng-disabled="controls.ok.btn"></td>
@@ -339,7 +339,7 @@ th {
 												</thead>
 												<tbody>
 													<tr ng-repeat="al in article.labors">
-														<td><input type="text" class="form-control" name="department{{$index}}" ng-model="al.department" ng-disabled="controls.ok.btn"></td>
+														<td><select class="form-control" name="department{{$index}}" ng-model="al.department" ng-disabled="controls.ok.btn" ng-options="d.name for d in departments track by d.id"></select></td>
 														<td><input type="text" class="form-control" name="process{{$index}}" ng-model="al.process" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="special_instruction{{$index}}" ng-model="al.special_instruction" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="operator{{$index}}" ng-model="al.operator" ng-disabled="controls.ok.btn"></td>

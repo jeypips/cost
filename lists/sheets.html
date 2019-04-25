@@ -36,7 +36,7 @@
 			<tr ng-repeat="a in articles">
 				<td>{{$index+1}}</td>
 				<td>{{a.article_no}}</td>
-				<td>{{a.description}}</td>
+				<td>{{a.description.name}}</td>
 				<td>{{a.date}}</td>
 				<td>
 					<a ng-click="app.article(this,a)" class="table-action-btn" style="cursor: pointer;"><i class="md md-edit"></i></a>
