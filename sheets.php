@@ -174,6 +174,10 @@
         <script src="assets/js/jquery.core.js"></script>
         <script src="assets/js/jquery.app.js"></script>
 		
+		<script src="dist/jspdf.min.js"></script>
+		<script src="dist/jspdf.debug.js"></script>
+		<script src="dist/jspdf.plugin.autotable.js"></script>
+		
 		<!-- dependencies -->
 		<link rel="stylesheet" href="angular/modules/bootbox/bs4-fix.css">	
 		<script src="angular/modules/bootbox/bootbox.min.js"></script>

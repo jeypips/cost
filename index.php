@@ -215,7 +215,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                   Copyright &copy; <b><?php echo date("Y"); ?></b> TARA DESGIN (PHILS). INC COSTSHEET
+                   Copyright &copy; <b><?php echo date("Y"); ?></b> TARA DESIGN (PHILS). INC COSTSHEET
                 </footer>
 
             </div>

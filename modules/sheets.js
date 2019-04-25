@@ -523,6 +523,174 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 		};
 		
+		self.print = function(scope,article) {
+			
+			$http({
+			  method: 'POST',
+			  url: 'handlers/print-sheet.php',
+			  data: {id: article.id}
+			}).then(function mySucces(response) {
+				
+				if (scope.article.id == 0) {
+					
+					growl.show('alert alert-danger alert-dismissible fade in',{from: 'top', amount: 55},'Please complete required fields below.');
+				
+				} else {
+					
+					print(scope,response.data);
+				
+				};
+			}, function myError(response) {
+				 
+			  // error
+				
+			});
+					
+			
+		}; 
+		
+		function print(scope,article) {
+			
+		var d = new Date();
+		var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	
+		var doc = new jsPDF({
+			orientation: 'portrait',
+			unit: 'pt',
+			format: [612, 792]
+		});	
+		var doc = new jsPDF('p','mm','legal');
+			
+		doc.setFontSize(11)
+		doc.setFont('times');
+		doc.setFontType('bold');
+		//X-axis, Y-axis
+		doc.text(10, 10, 'TARA DESIGN (PHILS). INC COSTSHEET');
+		
+		doc.setFontSize(10)
+		doc.setFont('times');
+		doc.setFontType('normal');
+		//X-axis, Y-axis
+		doc.text(10, 20, 'ARTICLE NO.');
+		
+		
+		doc.text(10, 30, 'DESCRIPTION');
+		doc.text(10, 38, 'DESIGN NAME');
+		doc.text(10, 46, 'DATE');
+		doc.text(10, 54, 'PATTERN DATE');
+		doc.text(10, 62, 'CUSTOMER');
+		doc.text(10, 70, 'DESIRED SIZE (cm)');
+		doc.text(10, 78, 'FULL WIDTH of ');
+		doc.text(10, 83, 'Desired Size (cm) ');
+		
+		doc.text(73, 30, 'COLOR #');
+		
+		doc.text(73, 38, 'RAW SIZE (cm)');
+		doc.text(73, 46, 'ESTIMATE');
+		
+		doc.text(73, 54, 'Final Raw Size (if');
+		doc.text(73, 57.5, 'w/ revisions)');
+		
+		doc.text(73, 63, 'FULL WIDTH of');
+		doc.text(73, 67.5, 'Fabric (cm)');
+		
+		doc.text(73, 75, 'FINISHED SIZE (cm)');
+		doc.text(73, 83, 'SHRINKAGE %');
+		
+		doc.setFontSize(15)
+		doc.setFont('times');
+		doc.setFontType('bold');
+		doc.text(40, 20, ''+article.article_no+' / '+article.article_no_revision);
+		
+		doc.setFontSize(11)
+		doc.setFont('times');
+		doc.setFontType('bold');
+		//X-axis, Y-axis
+		doc.text(35, 30, ''+article.description.name);
+		doc.text(35, 38, ''+article.design_name);
+		doc.text(35, 46, ''+article.date);
+		doc.text(35, 54, ''+article.pattern_date);
+		doc.text(35, 62, ''+article.customer);
+		doc.text(35, 70, ''+article.desired_size);
+		doc.text(35, 78, ''+article.full_width_desired_size);
+		
+		
+		doc.setDrawColor(0,0,0);
+		doc.rect(130, 10, 83, 75); // filled square with red borders
+		
+		doc.setFontSize(11)
+		doc.setFont('times');
+		doc.setFontType('normal');
+		doc.text(10, 98, 'FABRIC CONSUMPTION');
+		
+		var header = ["#","DESCRIPTION","QUALITY","COLOR","QTY","DIMENSION(cm)","FABRIC","LANDED COST"];
+		
+		var header = [
+			{title: "#", dataKey: "1"},
+			{title: "DESCRIPTION", dataKey: "2"},
+			{title: "QUALITY", dataKey: "3"},
+			{title: "COLOR", dataKey: "4"},
+			{title: "QTY", dataKey: "5"},
+			{title: "DIMENSION(cm)", dataKey: "6"},
+			{title: "FABRIC", dataKey: "7"},
+			{title: "LANDED COST<br>asd", dataKey: "8"},
+			{title: "COST (USD)", dataKey: "9"},
+		];
+		var rows = [
+			{"6": "W x L","7": "Consumption (m²)","8": "m² (USD)"},
+		
+		];	
+			
+	
+			doc.autoTable(header, rows,{
+				theme: 'striped',
+				margin: {
+					top: 100, 
+					left: 10 
+				},
+				tableWidth: 500,
+				styles: {
+					lineColor: [75, 75, 75],
+					lineWidth: 0.50,
+					cellPadding: 3,
+					overflow: 'linebreak',
+					columnWidth: 'wrap',
+					
+				},
+				headerStyles: {
+					halign: 'center',
+					fillColor: [191, 191, 191],
+					textColor: 50,
+					fontSize: 8
+				},
+				bodyStyles: {
+					halign: 'center',
+					fillColor: [255, 255, 255],
+					textColor: 50,
+					fontSize: 8
+				},
+				alternateRowStyles: {
+					fillColor: [255, 255, 255]
+				}
+			});
+			
+		/* //column 1
+		doc.setFontSize(13)
+		doc.setFont('default');
+		doc.setFontType('normal');
+		doc.setFont('times');
+		doc.text(5, 55, 'Case No/s: ');
+		doc.text(48, 61.5, months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear());
+		doc.text(5, 62, 'Date of this Report: ');
+		doc.text(5, 72, 'Name:'); */
+
+			var blob = doc.output('blob');
+			window.open(URL.createObjectURL(blob));
+		
+		
+		};
+		
+		
 	};
 	
 	return new app();

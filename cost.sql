@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 25, 2019 at 04:02 PM
+-- Generation Time: Apr 25, 2019 at 05:35 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -36,6 +36,13 @@ CREATE TABLE `accessory` (
   `landed_cost` varchar(50) DEFAULT NULL,
   `cost` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accessory`
+--
+
+INSERT INTO `accessory` (`id`, `articles_id`, `item`, `color`, `size`, `consumption`, `landed_cost`, `cost`) VALUES
+(1, 4, '4', '5', '5', '6', '6', '5');
 
 -- --------------------------------------------------------
 
@@ -97,7 +104,8 @@ CREATE TABLE `articles` (
 INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
 (1, '2.71', '000', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (2, '2.71', '100', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, 'Red', NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(3, '2.71', '200', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, 'Blue', NULL, NULL, NULL, NULL, NULL, NULL, 1);
+(3, '2.71', '200', '1', NULL, '2019-04-25', NULL, NULL, NULL, NULL, 'Blue', NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(4, '23.1 1113', '000', '3', 'Degn', '2019-04-25', 'mm/dd/yyyy', 'Jp', '10Cm', 'asd', '#444', '14Cm', NULL, '23', 'sad', 'asd', '78', 1);
 
 -- --------------------------------------------------------
 
@@ -165,7 +173,8 @@ CREATE TABLE `fabric` (
 INSERT INTO `fabric` (`id`, `articles_id`, `description`, `quality`, `color`, `qty`, `dimension_w`, `dimension_l`, `fabric_m`, `landed_cost`, `cost`) VALUES
 (1, 1, '1', '', '', '', '', '', '', '', ''),
 (2, 2, '1', '', '', '', '', '', '', '', ''),
-(3, 3, '2', '', '', '', '', '', '', '', '');
+(3, 3, '2', '', '', '', '', '', '', '', ''),
+(4, 4, '2', '1', 'Red', '5', '45', '45', '4', '4', '4');
 
 -- --------------------------------------------------------
 
@@ -208,6 +217,13 @@ CREATE TABLE `labor` (
   `sec` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `labor`
+--
+
+INSERT INTO `labor` (`id`, `articles_id`, `department`, `process`, `special_instruction`, `operator`, `approved_time`, `tl_min`, `hour`, `min`, `sec`) VALUES
+(1, 4, '1', '4', '5', '5', '5', '6', '7', '8', '6');
+
 -- --------------------------------------------------------
 
 --
@@ -226,6 +242,13 @@ CREATE TABLE `thread` (
   `landed_cost` varchar(50) DEFAULT NULL,
   `cost` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `thread`
+--
+
+INSERT INTO `thread` (`id`, `articles_id`, `description`, `quality`, `color`, `initial_wt`, `net_wt`, `total_weight`, `landed_cost`, `cost`) VALUES
+(1, 4, '1', '4', '4', '4', '4', '5', '6', '4');
 
 --
 -- Indexes for dumped tables
@@ -298,7 +321,7 @@ ALTER TABLE `thread`
 -- AUTO_INCREMENT for table `accessory`
 --
 ALTER TABLE `accessory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `accounts`
 --
@@ -308,7 +331,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `departments`
 --
@@ -333,12 +356,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `labor`
 --
 ALTER TABLE `labor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
