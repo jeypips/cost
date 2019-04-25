@@ -38,16 +38,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		};
 		
 		self.uploadProfilePicture = function(scope) {
-	
-		  /*  if (($scope.personalInfo.empid == '') || ($scope.personalInfo.empid == undefined)) {
-			   
-				bootstrapNotify.show('danger','You must provide employee id first before you can upload profile picture');
-				$scope.frmHolder.personalInfo.empid.$touched = true;
-				return;
-			   
-		   }	 */
 			
-		   // $scope.proPic = null;
+		   // scope.proPic = null;
 		   var file = scope.views.proPic;
 		   
 		   if (file == undefined) return;
@@ -128,8 +120,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				bui.hide();
 				
 			});
-			//
-
+		
 			$('#content').load('lists/sheets.html', function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },100);								
 				// instantiate datable
