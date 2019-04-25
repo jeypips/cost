@@ -19,27 +19,12 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				},
 			};
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.description = {};
+			scope.description.id = 0;
 			
-			scope.accounts = []; // list
+			scope.descriptions = []; // list
 			
 		};
-		
-		function groups(scope) {
-			
-			$http({
-				method: 'POST',
-				url: 'api/suggestions/groups.php'
-			}).then(function mySucces(response) {
-				
-				scope.groups = response.data;
-				
-			},function myError(response) {
-				
-			});
-			
-		};	
 		
 		function mode(scope,row) {
 			
@@ -61,15 +46,15 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 			bui.show();
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.description = {};
+			scope.description.id = 0;
 			
 			$http({
 			  method: 'POST',
-			  url: 'handlers/accounts/list.php',
+			  url: 'handlers/descriptions/list.php',
 			}).then(function mySucces(response) {
 				
-				scope.accounts = response.data;
+				scope.descriptions = response.data;
 				
 				bui.hide();
 				
@@ -80,11 +65,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			});
 			//
 
-			$('#content').load('lists/accounts.html', function() {
+			$('#content').load('lists/descriptions.html', function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },100);								
 				// instantiate datable
 				$timeout(function() {
-					$('#user_table').DataTable({
+					$('#description_table').DataTable({
 						"ordering": false
 					});	
 				},200);
@@ -94,7 +79,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		
 		function validate(scope) {
 			
-			var controls = scope.formHolder.account.$$controls;
+			var controls = scope.formHolder.description.$$controls;
 			
 			angular.forEach(controls,function(elem,i) {
 				
@@ -102,7 +87,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 									
 			});
 
-			return scope.formHolder.account.$invalid;
+			return scope.formHolder.description.$invalid;
 			
 		};
 		
@@ -127,22 +112,22 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 			$http({
 			  method: 'POST',
-			  url: 'handlers/accounts/save.php',
-			  data: {account: scope.account}
+			  url: 'handlers/descriptions/save.php',
+			  data: {description: scope.description}
 			  
 			}).then(function mySucces(response) {
 				
-				if (scope.account.id == 0) {
-					scope.account.id = response.data;
+				if (scope.description.id == 0) {
+					scope.description.id = response.data;
 					
-					growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully added.');
+					growl.show('btn btn-default',{from: 'top', amount: 55},'Description Information successfully added.');
 						
 					}	else{
-						growl.show('btn btn-default',{from: 'top', amount: 55},'Account Information successfully updated.');
+						growl.show('btn btn-default',{from: 'top', amount: 55},'Description Information successfully updated.');
 					};
 					
-					mode(scope,scope.account)
-					
+					mode(scope,scope.description)
+					self.list(scope);
 
 			}, function myError(response) {
 				 
@@ -151,49 +136,46 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			});			
 			
 		};	
-	
-		self.account = function(scope,row) {	
+		 
+		self.description = function(scope,row) {
 			
-			bui.show();
+			var title = 'Add Description';
 			
-			scope.account = {};
-			scope.account.id = 0;
+			scope.description = {};
+			scope.description.id = 0;
 			
 			mode(scope,row);
 			
-			$timeout(function() { groups(scope); },200);
-			
-			$('#content').load('forms/account.html',function() {
-				$timeout(function() { $compile($('#content')[0])(scope); },200);
-			});
-			
 			if (row != null) {
 				
-				if (scope.$id > 2) scope = scope.$parent;
+				title = 'Edit Description';
 				
+				if (scope.$id > 2) scope = scope.$parent;				
 				$http({
 				  method: 'POST',
-				  url: 'handlers/accounts/view.php',
+				  url: 'handlers/descriptions/view.php',
 				  data: {id: row.id}
 				}).then(function mySucces(response) {
 					
-					angular.copy(response.data, scope.account);
-					
-					bui.hide();
+					angular.copy(response.data, scope.description);
 					
 				}, function myError(response) {
 					 
-					 bui.hide();
-					 
-				});
+				  // error
+					
+				});		
 				
 			};
 			
-			$timeout(function() { bui.hide(); },100);
+			var onOk = function() {
+				
+				self.save(scope);
+	
+			};
 			
-		}; 
-		
-		
+			bootstrapModal.box(scope,title,'dialogs/description.html',onOk);
+			
+		};
 		
 		self.delete = function(scope,row) {
 			
@@ -203,13 +185,13 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				
 				$http({
 				  method: 'POST',
-				  url: 'handlers/accounts/delete.php',
+				  url: 'handlers/descriptions/delete.php',
 				  data: {id: [row.id]}
 				}).then(function mySucces(response) {
 
 					self.list(scope);
 					
-					growl.show('btn btn-danger',{from: 'top', amount: 55},'Account Information successfully deleted.');
+					growl.show('btn btn-danger',{from: 'top', amount: 55},'Description Information successfully deleted.');
 					
 				}, function myError(response) {
 					 
@@ -223,15 +205,6 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			
 		};
 		
-		/* // show password
-		self.inputType = 'password';
-		  
-		self.hideShowPassword = function(){
-			if (self.inputType == 'password')
-				self.inputType = 'text';
-			else
-				self.inputType = 'password';
-	    }; */
 		
 	};
 	

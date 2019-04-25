@@ -4,8 +4,12 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 
 include_once '../../db.php';
 
+require_once 'classes.php';
+
 header("Content-Type: application/json");
 $con = new pdo_db("articles");
+
+session_start();
 
 $fabrics = $_POST['article']['fabrics'];
 unset($_POST['article']['fabrics']);
@@ -31,20 +35,27 @@ unset($_POST['article']['labors']);
 $labors_dels = $_POST['article']['labors_dels'];
 unset($_POST['article']['labors_dels']);
 
+$_POST['article']['date'] =  date("Y-m-d",strtotime($_POST['article']['date']));
+
 if ($_POST['article']['id']) {
 	
-
+	$_POST['article']['process_by'] = $_SESSION['id'];
 	$article = $con->updateObj($_POST['article'],'id');
 	$article_id = $_POST['article']['id'];
 	
 } else {
 	
+	$_POST['article']['process_by'] = $_SESSION['id'];
 	$article = $con->insertObj($_POST['article']);
 	$article_id = $con->insertId;
 	echo $con->insertId;
 
 };
 
+/* $uploads = array("files"=>$_POST['article']['files']);	
+unset($_POST['article']['files']); */
+
+//fabric 
 if (count($fabrics_dels)) {
 
 	$con->table = "fabric";
@@ -52,7 +63,7 @@ if (count($fabrics_dels)) {
 	
 }
  
-//fabric 
+
 if (count($fabrics)) {
 
 	$con->table = "fabric";

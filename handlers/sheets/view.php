@@ -24,6 +24,13 @@ $accessories = $con->getData("SELECT * FROM accessory WHERE articles_id = ".$art
 $article[0]['accessories'] = $accessories;
 $article[0]['accessories_dels'] = [];
 
+$labors = $con->getData("SELECT * FROM labor WHERE articles_id = ".$article[0]['id']);
+$article[0]['labors'] = $labors;
+$article[0]['labors_dels'] = [];
+
+
+if ($article[0]['date'] != null) $article[0]['date'] = date("m/d/Y",strtotime($article[0]['date']));
+
 echo json_encode($article[0]);
 
 ?>

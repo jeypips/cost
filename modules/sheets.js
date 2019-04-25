@@ -137,10 +137,10 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		};
 		
 		self.save = function(scope) {
-			
+	
 			if (validate(scope)){ 
-			growl.show('btn btn-danger',{from: 'top', amount: 55},'Please complete required fields.');
-			return;
+				growl.show('btn btn-danger',{from: 'top', amount: 55},'Please complete required fields.');
+				return;
 			};
 			
 			$http({
@@ -166,8 +166,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				 
 			  // error
 				
-			});			
-			
+			});	
+
 		};
 		
 		function articleNo(scope) {
@@ -224,6 +224,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 				}).then(function mySucces(response) {
 					
 					angular.copy(response.data, scope.article);
+					scope.article.date = new Date(response.data.date);
 					
 					bui.hide();
 					

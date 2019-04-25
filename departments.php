@@ -9,7 +9,7 @@
 
 		<link rel="shortcut icon" href="assets/images/logo.png">
 
-		<title>Sheets - Cost Sheet System</title>
+		<title>Departments - Cost Sheet System</title>
 		
 		<!-- DataTables -->
         <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/files.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/switch.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,11 +41,10 @@
 			cursor: default;
 		}
 	</style>
-
-	<body class="fixed-left" ng-app="sheets" ng-controller="sheetsCtrl" account-profile>
+	<body class="fixed-left" ng-app="department" ng-controller="departmentCtrl" account-profile>
 
 		<!-- Begin page -->
-		<div id="wrapper" class="enlarged forced">
+		<div id="wrapper">
 
             <!-- Top Bar Start -->
             <div class="topbar">
@@ -117,14 +116,14 @@
                                 <li><a href="index.php" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
 							<li class="has_sub">
-                                <li><a href="sheets.php" class="waves-effect active"><i class="ti-files"></i><span> Sheets </span></a></li>
+                                <li><a href="sheets.php" class="waves-effect"><i class="ti-files"></i><span> Sheets </span></a></li>
                             </li>
 							<li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">4</span><span> Maintenance </span> </a>
+                                <a href="#" class="waves-effect active"><i class="ti-settings"></i> <span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>
                                     <li><a href="groups.php" class="waves-effect">Groups</a></li>
-									<li><a href="departments.php" class="waves-effect">Departments</a></li>
+									<li class="active"><a href="departments.php" class="waves-effect">Departments</a></li>
                                     <li><a href="descriptions.php" class="waves-effect">Descriptions</a></li>
                                 </ul>
                             </li>
@@ -193,12 +192,10 @@
 		<script src="angular/modules/account/account.js"></script>
 		<script src="angular/modules/validation/validate.js"></script>
 		<script src="angular/modules/post/window-open-post.js"></script>	
-		<script src="modules/sheets.js"></script>
+		<script src="modules/department.js"></script>
 
 		<!-- controller -->
-		<script src="controllers/sheets.js"></script>
-		
-	
+		<script src="controllers/department.js"></script>
 	
 	</body>
 </html>

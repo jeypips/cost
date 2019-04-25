@@ -1,0 +1,17 @@
+<div class="panel panel-border panel-primary">
+	<div class="panel-body">
+		<form name="formHolder.department" id="formHolder.department" novalidate autocomplete="off">
+			<div class="row">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-white waves-effect waves-light pull-right" ng-click="app.edit(this)"><i class="fa" ng-class="{'fa-edit': controls.ok.btn, 'fa-ban': !controls.ok.btn}"></i></button>
+				</div>
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" class="form-control" name="name" ng-model="department.name" ng-disabled="controls.ok.btn">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

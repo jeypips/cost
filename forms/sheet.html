@@ -30,132 +30,109 @@ th {
 	<div class="panel-body">
 		<form name="formHolder.article" id="formHolder.article" novalidate autocomplete="off">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-6">
+				<div class="col-md-6 col-sm-12">
+					<div class="col-md-12">
 						<div class="form-group">
 							<label>Article Number</label>
 							<input type="text" class="form-control" name="article_no" ng-model="article.article_no" disabled>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Description</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Color</label>
 							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Design Name</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="text" class="form-control" name="design_name" ng-model="article.design_name" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Raw Size (cm)</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="raw_size" ng-model="article.raw_size" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Date</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="date" class="form-control" name="date" ng-model="article.date" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Etimate</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="estimate" ng-model="article.estimate" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Pattern Date</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="text" class="form-control" name="pattern_date" ng-model="article.pattern_date" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Final Raw Size (if w/ revisions)</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="final_raw_size" ng-model="article.final_raw_size" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Customer</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="text" class="form-control" name="customer" ng-model="article.customer" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Full Width of Fabric(cm)</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="full_width_fabric" ng-model="article.full_width_fabric" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Desired Size (cm)</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+							<input type="text" class="form-control" name="desired_size" ng-model="article.desired_size" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6 col-sm-12">
 						<div class="form-group">
 							<label>Finished Size (cm)</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+							<input type="text" class="form-control" name="finished_size" ng-model="article.finished_size" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<div class="form-group">
+							<label>Full Width of Desired Size (cm)</label>
+							<input type="text" class="form-control" name="full_width_desired_size" ng-model="article.full_width_desired_size" ng-disabled="controls.ok.btn">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<div class="form-group">
+							<label>Shrinkage %</label>
+							<input type="text" class="form-control" name="shrinkage" ng-model="article.shrinkage" ng-disabled="controls.ok.btn">
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-3" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
+				
+				<div class="col-md-6 col-sm-12">
+					<div class="col-lg-12">
 						<div class="form-group">
-							<label>Full Width of Desired Size (cm)</label>
-							<input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" required>
-							<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
+						<label>&nbsp;</label>
+							<div class="row">
+								<!-- <button class="btn btn-default"><i class="fa fa-folder-open"></i> Choose file</button> -->
+								<input type="file" id="upload-files">
+							</div>
 						</div>
-					</div>
-					<div class="col-md-3">
-						<div class="form-group">
-							<label>Shrinkage %</label>
-							<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
-						</div>
-					</div>
+					</div>										
 				</div>
 			</div>
 			
@@ -330,7 +307,7 @@ th {
 								<div id="labor" class="tab-pane">
 									<div class="row">
 										<div class="col-md-12">
-											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.accessory.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
+											<button class="btn btn-linkedin waves-effect waves-light pull-right" ng-click="app.labor.add(this)" ng-disabled="controls.ok.btn"><i class="fa fa-plus"></i></button>
 										</div>
 									</div>
 									<div class="row">
@@ -352,7 +329,7 @@ th {
 														<th>Process</th>
 														<th>Special Instruction/s</th>
 														<th>Operator</th>
-														<th>Approved Time)</th>
+														<th>Approved Time</th>
 														<th>(min)</th>
 														<th>Hour</th>
 														<th>Min</th>
@@ -362,17 +339,16 @@ th {
 												</thead>
 												<tbody>
 													<tr ng-repeat="al in article.labors">
-														<td>{{$index+1}}</td>
 														<td><input type="text" class="form-control" name="department{{$index}}" ng-model="al.department" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="process{{$index}}" ng-model="al.process" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="special_instruction{{$index}}" ng-model="al.special_instruction" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="operator{{$index}}" ng-model="al.operator" ng-disabled="controls.ok.btn"></td>
-														<td><input type="date" class="form-control" name="approved_time{{$index}}" ng-model="al.approved_time" ng-disabled="controls.ok.btn"></td>
+														<td><input type="text" class="form-control" name="approved_time{{$index}}" ng-model="al.approved_time" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="tl_min{{$index}}" ng-model="al.tl_min" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="hour{{$index}}" ng-model="al.hour" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="min{{$index}}" ng-model="al.min" ng-disabled="controls.ok.btn"></td>
 														<td><input type="text" class="form-control" name="sec{{$index}}" ng-model="al.sec" ng-disabled="controls.ok.btn"></td>
-														<td><button class="btn btn-danger" ng-click="app.thread.delete(this,al)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
+														<td><button class="btn btn-danger" ng-click="app.labor.delete(this,al)" ng-disabled="controls.ok.btn"><i class="fa fa-remove"></i></button></td>
 													</tr>
 												</tbody>
 											</table>
