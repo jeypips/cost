@@ -75,7 +75,7 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{profile.picture}}" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="md md-face-unlock"></i> Profile</a></li>
+                                        <li><a href="profile-setting.php"><i class="md md-face-unlock"></i> Profile</a></li>
                                         <li><a href="javascript:;" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                     </ul>
                                 </li>
@@ -100,7 +100,7 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><small>{{profile.fullname}}</small> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
+                                    <li><a href="profile-setting.php"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
                                     <li><a href="javascript:void(0)" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                 </ul>
                             </div>

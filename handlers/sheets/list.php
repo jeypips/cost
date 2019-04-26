@@ -9,8 +9,12 @@ $con = new pdo_db("articles");
 $articles = $con->getData("SELECT *,DATE_FORMAT(date, '%M %d, %Y') date FROM articles");
 foreach($articles as $key => $ar){
 	
-	$desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$ar['description']);
-	$articles[$key]['description'] = $desc[0];	
+	if ($ar['description']==null) {
+		$articles[$key]['description'] = array("id"=>0,"name"=>"");			
+	} else {
+		$desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$ar['description']);
+		$articles[$key]['description'] = $desc[0];
+	};
 	
 };
 

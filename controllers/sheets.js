@@ -12,4 +12,14 @@ app.controller('sheetsCtrl',function($scope,app) {
 	
 	$scope.views.profilePicture = 'pictures/default.jpg';
 	
+	$scope.module = {
+		id: 'sheets',
+		privileges: {
+			show: 1,
+			add: 2,
+			edit: 3,
+			delete: 4,
+		}
+	};
+	
 });

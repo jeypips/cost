@@ -113,13 +113,13 @@
                     <div id="sidebar-menu">
                         <ul>
                         	<li class="text-muted menu-title">Navigation</li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.dashboard.value">
                                 <li><a href="index.php" class="waves-effect active"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.sheets.value">
                                 <li><a href="sheets.php" class="waves-effect"><i class="ti-files"></i><span> Sheets </span></a></li>
                             </li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.maintenance.value">
                                 <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">4</span><span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php" class="waves-effect">Accounts</a></li>
@@ -158,11 +158,65 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="widget-bg-color-icon card-box fadeInDown animated">
                                     <div class="bg-icon bg-icon-info pull-left">
-                                        <i class="md md-attach-money text-info"></i>
+                                        <i class="fa fa-check text-info"></i>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.fabric}}</b></h3>
+                                        <p class="text-muted">Fabric Consumption</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="widget-bg-color-icon card-box">
+                                    <div class="bg-icon bg-icon-info pull-left">
+                                        <i class="fa fa-check text-info"></i>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.thread}}</b></h3>
+                                        <p class="text-muted">Thread Consumption</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="widget-bg-color-icon card-box">
+                                   <div class="bg-icon bg-icon-info pull-left">
+                                        <i class="fa fa-check text-info"></i>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.access}}</h3>
+                                        <p class="text-muted">Accessory Consumption</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-3">
+                                <div class="widget-bg-color-icon card-box">
+                                    <div class="bg-icon bg-icon-info pull-left">
+                                        <i class="fa fa-check text-info"></i>
+                                    </div>
+                                    <div class="text-right">
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.labor}}</b></h3>
+                                        <p class="text-muted">Labor Consumption</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="widget-bg-color-icon card-box fadeInDown animated">
+                                    <div class="bg-icon bg-icon-warning pull-left">
+                                        <i class="md md-attach-money text-warning"></i>
                                     </div>
                                     <div class="text-right">
                                         <h3 class="text-dark"><b class="counter">{{dashboard.total_sheet}}</b></h3>
@@ -188,10 +242,10 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="widget-bg-color-icon card-box">
                                     <div class="bg-icon bg-icon-purple pull-left">
-                                        <i class="md md-equalizer text-purple"></i>
+                                        <i class="fa fa-building-o text-purple"></i>
                                     </div>
                                     <div class="text-right">
-                                        <h3 class="text-dark"><b class="counter"></h3>
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.total_department}}</h3>
                                         <p class="text-muted">Total Department</p>
                                     </div>
                                     <div class="clearfix"></div>
@@ -201,11 +255,11 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="widget-bg-color-icon card-box">
                                     <div class="bg-icon bg-icon-success pull-left">
-                                        <i class="md md-remove-red-eye text-success"></i>
+                                        <i class="fa fa-reorder text-success"></i>
                                     </div>
                                     <div class="text-right">
-                                        <h3 class="text-dark"><b class="counter">64,570</b></h3>
-                                        <p class="text-muted">Today's Visits</p>
+                                        <h3 class="text-dark"><b class="counter">{{dashboard.total_description}}</b></h3>
+                                        <p class="text-muted">Total Description</p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

@@ -77,7 +77,7 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{profile.picture}}" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="md md-face-unlock"></i> Profile</a></li>
+                                        <li><a href="profile-setting.php"><i class="md md-face-unlock"></i> Profile</a></li>
                                         <li><a href="javascript:;" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                     </ul>
                                 </li>
@@ -102,7 +102,7 @@
                             <div class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><small>{{profile.fullname}}</small> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
+                                    <li><a href="profile-setting.php"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
                                     <li><a href="javascript:void(0)" logout-account><i class="md md-settings-power"></i> Logout</a></li>
                                 </ul>
                             </div>
@@ -113,13 +113,13 @@
                     <div id="sidebar-menu">
                         <ul>
                         	<li class="text-muted menu-title">Navigation</li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.dashboard.value">
                                 <li><a href="index.php" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a></li>
                             </li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.sheets.value">
                                 <li><a href="sheets.php" class="waves-effect active"><i class="ti-files"></i><span> Sheets </span></a></li>
                             </li>
-							<li class="has_sub">
+							<li class="has_sub" ng-show="profile.pages_access.maintenance.value">
                                 <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">4</span><span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>
@@ -197,6 +197,7 @@
 		<script src="angular/modules/account/account.js"></script>
 		<script src="angular/modules/validation/validate.js"></script>
 		<script src="angular/modules/post/window-open-post.js"></script>
+		<script src="modules/module-access.js"></script>
 		<script src="modules/sheets.js"></script>
 
 		<!-- controller -->
