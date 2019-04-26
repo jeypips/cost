@@ -228,9 +228,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				  
 				}).then(function mySucces(response) {
 					
-					scope.article.id = response.data;					
+					scope.article.id = response.data;
+					
 					growl.show('btn btn-default',{from: 'top', amount: 55},'Sheet Information successfully revised.');										
-					mode(scope,scope.article);						
+					mode(scope,scope.article);
+					
 
 				}, function myError(response) {
 					 
@@ -656,8 +658,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 			];	
 			
-			var top_th = 100;
-			var title_th = 98;
+			var top_th = 102;
+			var title_th = 100;
 			
 			angular.forEach(article.datas.fabrics, function(fab,key) {
 				
@@ -695,20 +697,20 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 'wrap',
+					columnWidth: 25,
 					
 				},
 				headerStyles: {
 					halign: 'center',
 					fillColor: [191, 191, 191],
 					textColor: 50,
-					fontSize: 8
+					fontSize: 7
 				},
 				bodyStyles: {
 					halign: 'center',
 					fillColor: [255, 255, 255],
 					textColor: 50,
-					fontSize: 8
+					fontSize: 7
 				},
 				alternateRowStyles: {
 					fillColor: [255, 255, 255]
@@ -843,20 +845,20 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 'wrap',
+					columnWidth: 28.5,
 					
 				},
 				headerStyles: {
 					halign: 'center',
 					fillColor: [191, 191, 191],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				bodyStyles: {
 					halign: 'center',
 					fillColor: [255, 255, 255],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				alternateRowStyles: {
 					fillColor: [255, 255, 255]
@@ -910,20 +912,20 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 'wrap',
+					columnWidth: 28.5,
 					
 				},
 				headerStyles: {
 					halign: 'center',
 					fillColor: [191, 191, 191],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				bodyStyles: {
 					halign: 'center',
 					fillColor: [255, 255, 255],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				alternateRowStyles: {
 					fillColor: [255, 255, 255]
@@ -974,20 +976,20 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 'wrap',
+					columnWidth: 28.5,
 					
 				},
 				headerStyles: {
 					halign: 'center',
 					fillColor: [191, 191, 191],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				bodyStyles: {
 					halign: 'center',
 					fillColor: [255, 255, 255],
 					textColor: 50,
-					fontSize: 9
+					fontSize: 7
 				},
 				alternateRowStyles: {
 					fillColor: [255, 255, 255]

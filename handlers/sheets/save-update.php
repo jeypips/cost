@@ -27,7 +27,6 @@ $labors = $_POST['article']['labors'];
 unset($_POST['article']['labors']);
 unset($_POST['article']['labors_dels']);
 
-
 $_POST['article']['date'] =  date("Y-m-d",strtotime($_POST['article']['date']));
 	
 # article no
@@ -36,7 +35,7 @@ $fd = substr($old_article_no_revision,0,1);
 $ifd = intval($fd)+1;
 $new_article_no_revision = STR_PAD((string)$ifd,strlen((string)$ifd)+2,"0",STR_PAD_RIGHT);
 $_POST['article']['article_no_revision'] = $new_article_no_revision;
-#	
+#
 
 unset($_POST['article']['id']);
 $_POST['article']['process_by'] = $_SESSION['id'];

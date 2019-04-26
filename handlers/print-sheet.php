@@ -13,6 +13,15 @@ $article = $con->getData("SELECT *, DATE_FORMAT(date, '%M %d, %Y') date FROM art
 $dir = "../pictures/";
 $picture = (file_exists($dir.$article[0]['id'].".jpg"))?$dir.$article[0]['id'].".jpg":$dir.$article[0]['id'].".png";
 
+if (file_exists($picture)) {
+	
+	$picture = (file_exists($dir.$article[0]['id'].".jpg"))?$dir.$article[0]['id'].".jpg":$dir.$article[0]['id'].".png";
+    
+} else {
+    $picture = "../pictures/default.jpg";
+}
+
+// var_dump($picture);
 // Read image path, convert to base64 encoding
 $dir_file_data = base64_encode(file_get_contents($picture));
 
