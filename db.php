@@ -232,6 +232,8 @@ class pdo_db {
 		$stmt = $this->db->prepare($this->prepare);
 		$e = $stmt->execute($insert);
 		$this->insertId = $this->db->lastInsertId();
+		
+		$this->rows = $stmt->rowCount();		
 
 		return $e;
 		
@@ -267,6 +269,8 @@ class pdo_db {
 		$stmt = $this->db->prepare($this->prepare);
 		$e = $stmt->execute($insert);
 		$this->insertId = $this->db->lastInsertId();
+
+		$this->rows = $stmt->rowCount();
 
 		return $e;
 		
@@ -321,6 +325,8 @@ class pdo_db {
 			$q = $value;
 			if (!$q) break;
 		}
+		
+		$this->rows = $stmt->rowCount();		
 		
 		return $q;
 
@@ -380,6 +386,8 @@ class pdo_db {
 			if (!$q) break;
 		}
 		
+		$this->rows = $stmt->rowCount();		
+		
 		return $q;
 
 	}
@@ -417,6 +425,8 @@ class pdo_db {
 
 		$stmt = $this->db->prepare($this->prepare);
 		$q = $stmt->execute($insert);
+		
+		$this->rows = $stmt->rowCount();		
 		
 		return $q;
 		
@@ -459,6 +469,8 @@ class pdo_db {
 
 		$stmt = $this->db->prepare($this->prepare);
 		$q = $stmt->execute($insert);
+		
+		$this->rows = $stmt->rowCount();
 		
 		return $q;
 		
@@ -523,6 +535,8 @@ class pdo_db {
 			$q = $value;
 			if (!$q) break;
 		}
+		
+		$this->rows = $stmt->rowCount();		
 		
 		return $q;
 
@@ -593,6 +607,8 @@ class pdo_db {
 			$q = $value;
 			if (!$q) break;
 		}
+		
+		$this->rows = $stmt->rowCount();		
 		
 		return $q;
 

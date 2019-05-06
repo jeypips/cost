@@ -209,7 +209,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 						}	else{
 							growl.show('btn btn-default',{from: 'top', amount: 55},'Sheet Information successfully updated.');
 						};
-						self.uploadProfilePicture(scope);
+						// self.uploadProfilePicture(scope);
 						mode(scope,scope.article)
 						
 
@@ -228,8 +228,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				  
 				}).then(function mySucces(response) {
 					
+					
 					// console.log();
-					var file = scope.views.proPic;
+				/* 	var file = scope.views.proPic;
 		   
 				   if (file == undefined) return;
 				   console.log(file);
@@ -237,8 +238,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				   var pp = file['name']; 
 				   var en = pp.substring(pp.indexOf("."),pp.length);
 
-				   var uploadUrl = "handlers/files.php?r=upload_profile_picture&id="+2+"&en="+en;
-				   fileUpload.uploadFileToUrl(file, uploadUrl, scope);
+				   var uploadUrl = "handlers/files.php?r=upload_profile_picture&id="+scope.article.id+"&en="+en;
+				   fileUpload.uploadFileToUrl(file, uploadUrl, scope); */
 					
 					growl.show('btn btn-default',{from: 'top', amount: 55},'Sheet Information successfully revised.');										
 					mode(scope,scope.article);

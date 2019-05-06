@@ -17,7 +17,6 @@ foreach ($_POST['id'] as $id) {
 		$file = "../../pictures/".$id."."."jpg";
 		if (file_exists($file)) unlink($file);
 		
-	
 };
 
 ?>

@@ -1,10 +1,8 @@
 <?php
 
-$old_article_no = "900";
-$fd = substr($old_article_no,0,1);
-$ifd = intval($fd)+1;
-$new_article_no = STR_PAD((string)$ifd,strlen((string)$ifd)+2,"0",STR_PAD_RIGHT);
+$picture = "pictures/1.jpg";
+$picture = PREG_REPLACE("/1/","2",$picture);
 
-var_dump($new_article_no);
+var_dump($picture);
 
 ?>
