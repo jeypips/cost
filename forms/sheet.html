@@ -37,6 +37,7 @@ th {
 								<label>Article Number</label>
 								<td><input type="text" class="form-control" name="article_no" ng-model="article.article_no" ng-disabled="controls.ok.btn" required></td>
 								<span class="help-block" ng-show="formHolder.article.article_no.$touched && formHolder.article.article_no.$invalid">This field is required</span>
+								<span class="text-danger" ng-show="article.not_unique">Username already exists</span>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -54,10 +55,11 @@ th {
 								<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.color.$touched && formHolder.article.color.$invalid}">
 							<div class="form-group">
 								<label>Color</label>
-								<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn">
+								<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn" required>
+								<span class="help-block" ng-show="formHolder.article.color.$touched && formHolder.article.color.$invalid">This field is required</span>
 							</div>
 						</div>
 					</div>
@@ -80,8 +82,7 @@ th {
 							<div class="form-group">
 								<label>Date</label>
 								<input type="date" class="form-control" name="date" ng-model="article.date" ng-disabled="controls.ok.btn" required>
-								<span class="help-block" ng-show="formHolder.article.date.$touched && formHolder.article.date.$invalid">This field is required</span>
-							</div>
+								<span class="help-block" ng-show="formHolder.article.date.$touched && formHolder.article.date.$invalid">This field is required</span>							</div>
 						</div>
 						<div class="col-md-6 col-sm-12">
 							<div class="form-group">

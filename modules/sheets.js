@@ -1,4 +1,4 @@
-angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap',,'module-access']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui,fileUpload,access,imageLoad) {
+angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap',,'module-access']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui,fileUpload,access,imageLoad,$q) {
 	
 	function app() {
 		
@@ -23,6 +23,13 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.article = {};
 			scope.article.id = 0;
 			
+			// info
+			scope.article.alert = {};
+			scope.article.alert.show = false;
+			scope.article.alert.message = '';
+			
+			scope.article.not_unique = false;
+			
 			scope.article.fabrics = [];
 			scope.article.fabrics_dels = [];
 			scope.article.threads = [];
@@ -34,6 +41,53 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 			scope.articles = []; // list
 			
+			watchInfo(scope);
+			
+		};
+		
+		function watchInfo(scope) {
+			
+			$timeout(function() {
+			
+				scope.$watch(function(scope) {
+					
+					return scope.article.article_no;
+					
+				},function(newValue, oldValue) {
+					
+					username_is_unique(scope).then(function(res) {
+						
+						scope.article.not_unique = res;
+						
+					}, function(res) {
+						
+					});
+
+				});
+
+			}, 1000);			
+			
+		};
+		
+		function username_is_unique(scope) {
+			
+			return $q(function(resolve,reject) {
+				
+				$http({
+					method: 'POST',
+					url: 'handlers/sheets/article_no_check.php',
+					data: scope.article
+				}).then(function mySuccess(response) {
+
+					resolve(response.data.status);
+		
+				}, function myError(response) {
+
+					reject(false);
+
+				});					
+				
+			});
 			
 		};
 		
@@ -370,6 +424,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this record?',onOk,function() {});
 			
 		};
+		
+		
+		
 		
 		self.fabric = {
 			
