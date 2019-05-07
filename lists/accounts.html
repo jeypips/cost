@@ -26,6 +26,7 @@
 		  <thead>
 			<tr>
 				<th>No.</th>
+				<th>ID Number</th>
 				<th>Name</th>
 				<th>Username</th>
 				<th>Groups</th>
@@ -36,6 +37,7 @@
 		  <tbody>
 			<tr ng-repeat="a in accounts">
 				<td>{{$index+1}}</td>
+				<td>{{a.unique_no}}</td>
 				<td>{{a.fullname}}</td>
 				<td>{{a.username}}</td>
 				<td>{{a.groups.description}}</td>

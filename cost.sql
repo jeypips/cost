@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2019 at 08:11 AM
+-- Generation Time: May 07, 2019 at 08:52 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -43,9 +43,7 @@ CREATE TABLE `accessory` (
 
 INSERT INTO `accessory` (`id`, `articles_id`, `item`, `color`, `size`, `consumption`, `landed_cost`, `cost`) VALUES
 (1, 1, 'Sample', 'Red', '5', '56', '7', '4555'),
-(3, 1, 'ASD', NULL, NULL, NULL, NULL, NULL),
-(4, 2, 'Sample', 'Red', '5', '56', '7', '4555'),
-(5, 2, 'ASD', NULL, NULL, NULL, NULL, NULL);
+(3, 1, 'ASD', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -55,6 +53,7 @@ INSERT INTO `accessory` (`id`, `articles_id`, `item`, `color`, `size`, `consumpt
 
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
+  `unique_no` varchar(100) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
   `middlename` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
@@ -68,10 +67,10 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `password`, `groups`, `date_added`) VALUES
-(2, 'Michelle Mae', 'J', 'Esperanza', 'admin', 'admin', 1, '2019-04-22 16:30:52'),
-(3, 'Roldan', 'C', 'Castro', 'roldan', 'roldan', 2, '2019-04-23 14:21:05'),
-(4, 'Radjz', 'S', 'Jallorina', 'radjz', 'radjz', 2, '2019-04-26 09:52:20');
+INSERT INTO `accounts` (`id`, `unique_no`, `firstname`, `middlename`, `lastname`, `username`, `password`, `groups`, `date_added`) VALUES
+(2, '2019-002', 'Michelle Mae', 'J', 'Esperanza', 'admin', 'admin', 1, '2019-04-22 16:30:52'),
+(3, '2019-003', 'Roldan', 'C', 'Castro', 'roldan', 'roldan', 2, '2019-04-23 14:21:05'),
+(4, '2019-004', 'Radjz', 'Sample', 'Sample', 'radjz', 'radjz', 2, '2019-05-07 08:51:05');
 
 -- --------------------------------------------------------
 
@@ -105,8 +104,7 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
-(1, '2.71. 1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2),
-(2, '2.71. 1111333', '100', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, NULL, '10cm', '10cm', '10', 2);
+(1, '2.71. 1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2);
 
 -- --------------------------------------------------------
 
@@ -175,11 +173,7 @@ INSERT INTO `fabric` (`id`, `articles_id`, `description`, `quality`, `color`, `q
 (1, 1, 1, NULL, 'Red', '5', '45', '45', '35', '45', '9000'),
 (2, 1, 1, '10', 'Red', '5', '45', '45', '35', '45', '9000'),
 (3, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 2, 1, NULL, 'Red', '5', '45', '45', '35', '45', '9000'),
-(6, 2, 1, '10', 'Redd', '5', '45', '45', '35', '45', '9000'),
-(7, 2, 1, '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -228,9 +222,7 @@ CREATE TABLE `labor` (
 
 INSERT INTO `labor` (`id`, `articles_id`, `department`, `process`, `special_instruction`, `operator`, `approved_time`, `tl_min`, `hour`, `min`, `sec`) VALUES
 (1, 1, 1, 'Sample', 'Sample', 'Sample', '80', '90', '1', '5', '100'),
-(3, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 2, 1, 'Sample', 'Sample', 'Sample', '80', '90', '1', '5', '100'),
-(5, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(3, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -258,10 +250,7 @@ CREATE TABLE `thread` (
 INSERT INTO `thread` (`id`, `articles_id`, `description`, `quality`, `color`, `initial_wt`, `net_wt`, `total_weight`, `landed_cost`, `cost`) VALUES
 (1, 1, 1, '4', 'Blue', '45', '45', '56', '46', '4666'),
 (3, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 2, 1, '4', 'Blue', '45', '45', '56', '46', '4666'),
-(6, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -347,7 +336,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `departments`
 --

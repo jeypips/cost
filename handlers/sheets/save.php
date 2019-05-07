@@ -35,7 +35,7 @@ unset($_POST['article']['labors']);
 $labors_dels = $_POST['article']['labors_dels'];
 unset($_POST['article']['labors_dels']);
 
-$_POST['article']['date'] =  date("Y-m-d",strtotime($_POST['article']['date']));
+$_POST['article']['date'] = date("Y-m-d",strtotime($_POST['article']['date']));
 
 if ($_POST['article']['id']) {
 	

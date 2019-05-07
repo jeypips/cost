@@ -26,6 +26,17 @@
 		<form name="formHolder.account" id="formHolder.account" novalidate autocomplete="off">
 			<div class="row">
 				<div class="col-md-12">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.unique_no.$touched && formHolder.account.unique_no.$invalid}">
+						<div class="form-group">
+							<label>ID Number</label>
+							<input type="text" class="form-control" name="unique_no" ng-model="account.unique_no" disabled required>
+							<span class="help-block" ng-show="formHolder.account.unique_no.$touched && formHolder.account.unique_no.$invalid">This field is required</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
 					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.firstname.$touched && formHolder.account.firstname.$invalid}">
 						<div class="form-group">
 							<label>First Name</label>

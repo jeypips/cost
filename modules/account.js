@@ -108,7 +108,31 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 		
 		self.cancel = function(scope) {
 			
-			self.list(scope);
+			if(scope.account.firstname==null) {
+					
+				if (scope.account.id>0) {
+					
+					$http({
+					  method: 'POST',
+					  url: 'handlers/accounts/delete-no.php',
+					  data: {id: scope.account.id}
+					}).then(function mySucces(response) {
+
+						window.location.reload(true);
+						
+					}, function myError(response) {
+						 
+					  // error
+						
+					});
+					
+				};
+				
+			} else{
+					
+				window.location.reload(true);
+				
+			};
 			
 		};
 		
@@ -160,6 +184,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			scope.account.id = 0;
 			
 			mode(scope,row);
+			
+			$timeout(function() { if (scope.account.id==0) unique_no(scope); },100);
 			
 			$timeout(function() { groups(scope); },200);
 			
@@ -220,6 +246,22 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui']).fa
 			};
 
 			bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this record?',onOk,function() {});
+			
+		};
+		
+		function unique_no(scope) {
+			
+			$http({
+			  method: 'GET',
+			  url: 'handlers/accounts/unique_no.php'
+			}).then(function mySucces(response) {
+
+				scope.account.id = response.data.id;
+				scope.account.unique_no = response.data.unique_no;
+
+			}, function myError(response) {
+				
+			});	
 			
 		};
 		
