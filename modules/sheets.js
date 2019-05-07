@@ -246,14 +246,16 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				return;
 			};
 			
-			if (scope.controls.ok.label == 'Save') {
+		
+					
+				if (scope.controls.ok.label == 'Save') {
 			
-				$http({
-				  method: 'POST',
-				  url: 'handlers/sheets/save.php',
-				  data: {article: scope.article}
-				  
-				}).then(function mySucces(response) {
+					$http({
+					  method: 'POST',
+					  url: 'handlers/sheets/save.php',
+					  data: {article: scope.article}
+					  
+					}).then(function mySucces(response) {
 					
 					if (scope.article.id == 0) {
 						scope.article.id = response.data;
@@ -273,40 +275,25 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					
 				});
 			
-			} else { // Update
-				
-				$http({
-				  method: 'POST',
-				  url: 'handlers/sheets/save-update.php',
-				  data: {article: scope.article}
-				  
-				}).then(function mySucces(response) {
+				} else { // Update
 					
+					$http({
+					  method: 'POST',
+					  url: 'handlers/sheets/save-update.php',
+					  data: {article: scope.article}
+					  
+					}).then(function mySucces(response) {
+						
+						growl.show('btn btn-default',{from: 'top', amount: 55},'Sheet Information successfully revised.');										
+						mode(scope,scope.article);
+						
+					}, function myError(response) {
+						 
+					  // error
+						
+					});				
 					
-					// console.log();
-				/* 	var file = scope.views.proPic;
-		   
-				   if (file == undefined) return;
-				   console.log(file);
-				   
-				   var pp = file['name']; 
-				   var en = pp.substring(pp.indexOf("."),pp.length);
-
-				   var uploadUrl = "handlers/files.php?r=upload_profile_picture&id="+scope.article.id+"&en="+en;
-				   fileUpload.uploadFileToUrl(file, uploadUrl, scope); */
-					
-					growl.show('btn btn-default',{from: 'top', amount: 55},'Sheet Information successfully revised.');										
-					mode(scope,scope.article);
-					
-					
-
-				}, function myError(response) {
-					 
-				  // error
-					
-				});				
-				
-			};
+				};
 
 		};
 		

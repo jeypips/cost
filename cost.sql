@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2019 at 08:52 AM
+-- Generation Time: May 07, 2019 at 09:26 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -96,15 +96,17 @@ CREATE TABLE `articles` (
   `full_width_fabric` varchar(50) DEFAULT NULL,
   `finished_size` varchar(50) DEFAULT NULL,
   `shrinkage` varchar(50) DEFAULT NULL,
-  `process_by` int(11) DEFAULT NULL
+  `process_by` int(11) DEFAULT NULL,
+  `not_unique` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`) VALUES
-(1, '2.71. 1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2);
+INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`, `not_unique`) VALUES
+(1, '2.71. 1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2, ''),
+(2, '2.71. 1111332', '000', 2, NULL, '2019-05-07', NULL, NULL, NULL, NULL, 'Green', NULL, NULL, NULL, NULL, NULL, NULL, 2, '');
 
 -- --------------------------------------------------------
 
@@ -173,7 +175,8 @@ INSERT INTO `fabric` (`id`, `articles_id`, `description`, `quality`, `color`, `q
 (1, 1, 1, NULL, 'Red', '5', '45', '45', '35', '45', '9000'),
 (2, 1, 1, '10', 'Red', '5', '45', '45', '35', '45', '9000'),
 (3, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 2, 1, '3', '3', '3', '3', '3', '3', '3', '3');
 
 -- --------------------------------------------------------
 
@@ -331,7 +334,7 @@ ALTER TABLE `accessory`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `articles`
 --
@@ -351,7 +354,7 @@ ALTER TABLE `descriptions`
 -- AUTO_INCREMENT for table `fabric`
 --
 ALTER TABLE `fabric`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `groups`
 --
