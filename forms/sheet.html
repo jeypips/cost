@@ -34,7 +34,7 @@ th {
 					<div class="row">
 						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.article_no.$touched && formHolder.article.article_no.$invalid}">
 							<div class="form-group">
-								<label>Article Number</label>
+								<label>Article Number <span class="text-danger">*</span></label>
 								<td><input type="text" class="form-control" name="article_no" ng-model="article.article_no" ng-disabled="controls.ok.btn" required></td>
 								<span class="help-block" ng-show="formHolder.article.article_no.$touched && formHolder.article.article_no.$invalid">This field is required</span>
 								<span class="text-danger" ng-show="article.not_unique">Article Number already exists</span>
@@ -50,24 +50,25 @@ th {
 					<div class="row">
 						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.description.$touched && formHolder.article.description.$invalid}">
 							<div class="form-group">
-								<label>Description</label>
+								<label>Description <span class="text-danger">*</span></label>
 								<td><input type="text" class="form-control" name="description" ng-model="article.description" ng-disabled="controls.ok.btn" uib-typeahead="d.name for d in descriptions | filter:{name:$viewValue}" typeahead-min-length="1" typeahead-on-select="app.descriptionSelect($item, this)" required></td>
 								<span class="help-block" ng-show="formHolder.article.description.$touched && formHolder.article.description.$invalid">This field is required</span>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.color.$touched && formHolder.article.color.$invalid}">
 							<div class="form-group">
-								<label>Color</label>
+								<label>Color <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" name="color" ng-model="article.color" ng-disabled="controls.ok.btn" required>
 								<span class="help-block" ng-show="formHolder.article.color.$touched && formHolder.article.color.$invalid">This field is required</span>
 							</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.design_name.$touched && formHolder.article.design_name.$invalid}">
 							<div class="form-group">
-								<label>Design Name</label>
-								<input type="text" class="form-control" name="design_name" ng-model="article.design_name" ng-disabled="controls.ok.btn">
+								<label>Design Name <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="design_name" ng-model="article.design_name" ng-disabled="controls.ok.btn" required>
+								<span class="help-block" ng-show="formHolder.article.design_name.$touched && formHolder.article.design_name.$invalid">This field is required</span>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12">
@@ -80,8 +81,8 @@ th {
 					<div class="row">
 						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.date.$touched && formHolder.article.date.$invalid}">
 							<div class="form-group">
-								<label>Date</label>
-								<input type="date" class="form-control" name="date" ng-model="article.date" ng-disabled="controls.ok.btn" required>
+								<label>Date <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="date" ng-model="article.date" ng-disabled="controls.ok.btn" placeholder="mm/dd/yyyy" required>
 								<span class="help-block" ng-show="formHolder.article.date.$touched && formHolder.article.date.$invalid">This field is required</span>							</div>
 						</div>
 						<div class="col-md-6 col-sm-12">

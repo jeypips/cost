@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2019 at 09:26 AM
+-- Generation Time: May 07, 2019 at 03:43 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -84,7 +84,7 @@ CREATE TABLE `articles` (
   `article_no_revision` varchar(10) DEFAULT NULL,
   `description` int(11) DEFAULT NULL,
   `design_name` varchar(255) DEFAULT NULL,
-  `date` date DEFAULT NULL,
+  `date` varchar(100) DEFAULT NULL,
   `pattern_date` varchar(100) DEFAULT NULL,
   `customer` varchar(150) DEFAULT NULL,
   `desired_size` varchar(50) DEFAULT NULL,
@@ -105,8 +105,8 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`, `not_unique`) VALUES
-(1, '2.71. 1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2, ''),
-(2, '2.71. 1111332', '000', 2, NULL, '2019-05-07', NULL, NULL, NULL, NULL, 'Green', NULL, NULL, NULL, NULL, NULL, NULL, 2, '');
+(1, '2.71.1111333', '000', 3, 'Sample', '2019-04-26', 'mm/dd/yyy', 'Sample', '10cm', '10cm', 'Red', '12cm', NULL, 'd', '10cm', '10cm', '10', 2, ''),
+(2, '2.71.1111332', '000', 2, NULL, '2019-05-07', NULL, NULL, NULL, NULL, 'Green', NULL, NULL, NULL, NULL, NULL, NULL, 2, '');
 
 -- --------------------------------------------------------
 
@@ -339,7 +339,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `departments`
 --

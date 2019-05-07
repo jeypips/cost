@@ -356,7 +356,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				}).then(function mySucces(response) {
 					
 					angular.copy(response.data, scope.article);
-					scope.article.date = new Date(response.data.date);
+					// scope.article.date = new Date(response.data.date);
 					
 					imageLoad.go(scope,response.data.id);
 					

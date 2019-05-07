@@ -6,9 +6,11 @@ require_once '../../db.php';
 
 $con = new pdo_db("articles");
 
-$articles = $con->getData("SELECT *,DATE_FORMAT(date, '%M %d, %Y') date FROM articles");
-
+$articles = $con->getData("SELECT * FROM articles");
+ 
 foreach($articles as $key => $ar){
+	
+	
 	
 	if ($ar['description']==null) {
 		$articles[$key]['description'] = array("id"=>0,"name"=>"");			
@@ -17,9 +19,12 @@ foreach($articles as $key => $ar){
 		$articles[$key]['description'] = $desc[0];
 	};
 	
+	if ($ar['process_by']==null) {
+		$articles[$key]['process_by'] = array("id"=>0,"fullname"=>"");			
+	} else {
 	$fullname = $con->getData("SELECT CONCAT(firstname,' ',lastname) fullname FROM accounts WHERE id = ".$ar['process_by']);
 	$articles[$key]['process_by'] = $fullname[0];
-	
+	};
 };
 
 echo json_encode($articles);
