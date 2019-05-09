@@ -57,8 +57,13 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					
 					username_is_unique(scope).then(function(res) {
 						
-						scope.article.not_unique = res;
-						
+							if(scope.article.article_no==null){
+								scope.article.not_unique = res;
+							}else{
+								scope.article.not_unique = false;
+							};
+							
+						console.log(scope.article.not_unique);
 					}, function(res) {
 						
 					});
@@ -66,6 +71,31 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				});
 
 			}, 1000);			
+			
+		};
+		
+		self.trylang = function(scope) {
+			
+			$timeout(function() {
+			
+				scope.$watch(function(scope) {
+					
+					return scope.article.article_no;
+					
+				},function(newValue, oldValue) {
+					
+					username_is_unique(scope).then(function(res) {
+						
+							scope.article.not_unique = res;
+							
+						console.log(scope.article.not_unique);
+					}, function(res) {
+						
+					});
+
+				});
+
+			}, 1000);
 			
 		};
 		
@@ -246,8 +276,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				return;
 			};
 			
-		
-					
+				console.log(scope.article.not_unique);
+				
+				if(scope.article.not_unique==false){
 				if (scope.controls.ok.label == 'Save') {
 			
 					$http({
@@ -294,6 +325,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					});				
 					
 				};
+				} else{
+					
+					growl.show('btn btn-danger',{from: 'top', amount: 55},'Article Number is already taken');	
+					
+				};
 
 		};
 		
@@ -316,8 +352,10 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		self.article = function(scope,row) {
 			
 			if (!access.has(scope,scope.profile.groups,scope.module.id,scope.module.privileges.add)) return;
-			
+						
 			bui.show();
+			
+			console.log(scope.article.not_unique);
 			
 			scope.article = {};
 			scope.article.id = 0;

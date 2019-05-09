@@ -33,6 +33,13 @@
 							<span class="help-block" ng-show="formHolder.account.unique_no.$touched && formHolder.account.unique_no.$invalid">This field is required</span>
 						</div>
 					</div>
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.groups.$touched && formHolder.account.groups.$invalid}">
+						<div class="form-group">
+							<label>Groups</label>
+							<select class="form-control" ng-model="account.groups" name="groups" ng-options="group.description for group in groups track by group.id" ng-disabled="controls.ok.btn" required></select>
+							<span class="help-block" ng-show="formHolder.account.groups.$touched && formHolder.account.groups.$invalid">This field is required</span>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -72,17 +79,21 @@
 					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.password.$touched && formHolder.account.password.$invalid}">
 						<div class="form-group">
 							<label>Password</label>
-							<input type="password" class="form-control" ng-model="account.password" name="password" ng-disabled="controls.ok.btn" required>
+							<input type="{{app.inputType}}" class="form-control" ng-model="account.password" name="password" ng-disabled="controls.ok.btn" required>
 							<span class="help-block" ng-show="formHolder.account.password.$touched && formHolder.account.password.$invalid">This field is required</span>
 						</div>
+						<label class="pull-left">
+						  <input type="checkbox" style="cursor: pointer;" id="checkbox" ng-model="app.passwordCheckbox" ng-click="app.hideShowPassword()" ng-disabled="controls.ok.btn" /> <label style="font-weight: normal;">Show password</label>
+						</label>
 					</div>
-					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.groups.$touched && formHolder.account.groups.$invalid}">
+					<div class="col-sm-4" ng-class="{'has-error': formHolder.account.confirm_password.$touched && formHolder.account.confirm_password.$invalid}">
 						<div class="form-group">
-							<label>Groups</label>
-							<select class="form-control" ng-model="account.groups" name="groups" ng-options="group.description for group in groups track by group.id" ng-disabled="controls.ok.btn" required></select>
-							<span class="help-block" ng-show="formHolder.account.groups.$touched && formHolder.account.groups.$invalid">This field is required</span>
+							<label>Confirm Password</label>
+							<input type="{{app.inputType}}" class="form-control" name="confirm_password" ng-model="account.confirm_password" ng-disabled="controls.ok.btn" password-confirm match-target="account.password" required>
+							<span class="help-block" ng-show="formHolder.account.confirm_password.$touched && formHolder.account.confirm_password.$error.match">Password does not match</span>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</form>

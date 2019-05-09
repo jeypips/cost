@@ -35,7 +35,7 @@ th {
 						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.article_no.$touched && formHolder.article.article_no.$invalid}">
 							<div class="form-group">
 								<label>Article Number <span class="text-danger">*</span></label>
-								<td><input type="text" class="form-control" name="article_no" ng-model="article.article_no" ng-disabled="controls.ok.btn" required></td>
+								<td><input type="text" class="form-control" name="article_no" ng-model="article.article_no" ng-disabled="controls.ok.btn" ng-keypress="app.trylang(this)" required></td>
 								<span class="help-block" ng-show="formHolder.article.article_no.$touched && formHolder.article.article_no.$invalid">This field is required</span>
 								<span class="text-danger" ng-show="article.not_unique">Article Number already exists</span>
 							</div>

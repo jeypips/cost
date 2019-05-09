@@ -69,7 +69,7 @@ if (count($threads_dels)) {
 
 	$con->table = "thread";
 	$delete = $con->deleteData(array("id"=>implode(",",$threads_dels)));
-	$modified_rows[] = true;	
+	$modified_rows[] = true;
 	
 }
 if (count($threads)) {
@@ -142,7 +142,7 @@ if (($article_modified) || ($article_children_modified)) {
 echo $article_id;
 
 function duplicate_article($con,$article_modified,$article_children_modified) {
-
+	
 	if ((!$article_modified) && (!$article_children_modified)) return $_POST['article']['id'];
 
 	global $fabrics, $threads, $accessories, $labors;
@@ -151,9 +151,13 @@ function duplicate_article($con,$article_modified,$article_children_modified) {
 	
 	# version no	
 	if ($article_modified) {
+		$old_no_revision = $_POST['article']['article_no_revision'];
+		$ld = substr($old_no_revision,strlen($old_no_revision)-1,1);
 		$fd = substr($old_article_no_revision,0,1);
+		
 		$ifd = intval($fd)+1;
-		$new_article_no_revision = STR_PAD((string)$ifd,strlen((string)$ifd)+2,"0",STR_PAD_RIGHT);
+		$num = intval($ld);
+		$new_article_no_revision = STR_PAD((string)$ifd,strlen((string)$ifd)+2,"0$num",STR_PAD_RIGHT);
 		$_POST['article']['article_no_revision'] = $new_article_no_revision;		
 	}
 	
@@ -179,7 +183,7 @@ function duplicate_article($con,$article_modified,$article_children_modified) {
 		$con->table = "fabric";
 		
 		foreach ($fabrics as $index => $value) {
-			
+
 			$fabrics[$index]['articles_id'] = $article_id;		
 			
 		}
