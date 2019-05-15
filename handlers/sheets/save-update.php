@@ -55,9 +55,24 @@ if (count($fabrics)) {
 
 	$con->table = "fabric";	
 	
-	foreach ($fabrics as $index => $value) {
+	foreach ($fabrics as $index => $value) {			
+		
+		$threads[$index]['total_weight'] = ($threads[$index]['initial_wt']-$threads[$index]['net_wt']);
+		
+		$threads[$index]['cost'] = (round($threads[$index]['landed_cost']*$threads[$index]['total_weight']));
+		
+		if ($value['id']) {
 			
-		$fabric_row = $con->updateObj($fabrics[$index],'id');
+			$fabric_row = $con->updateObj($fabrics[$index],'id');
+			
+		} else {
+			
+			unset($fabrics[$index]['id']);
+			$fabrics[$index]['articles_id'] = $article_id;			
+			$fabric_row = $con->insertObj($fabrics[$index]);
+			
+		}
+		
 		$modified_rows[] = ($con->rows)?true:false;
 	
 	}
@@ -77,8 +92,23 @@ if (count($threads)) {
 	$con->table = "thread";
 	
 	foreach ($threads as $index => $value) {
+		
+		$threads[$index]['total_weight'] = ($threads[$index]['initial_wt']-$threads[$index]['net_wt']);
+		
+		$threads[$index]['cost'] = (round($threads[$index]['landed_cost']*$threads[$index]['total_weight']));
+		
+		if ($value['id']) {
 			
-		$thread_row = $con->updateObj($threads[$index],'id');
+			$thread_row = $con->updateObj($threads[$index],'id');
+			
+		} else {
+			
+			unset($threads[$index]['id']);
+			$threads[$index]['articles_id'] = $article_id;				
+			$thread_row = $con->insertObj($threads[$index]);
+			
+		}
+		
 		$modified_rows[] = ($con->rows)?true:false;		
 	
 	}
@@ -89,7 +119,7 @@ if (count($threads)) {
 if (count($accessories_dels)) {
 
 	$con->table = "accessory";
-	$delete = $con->deleteData(array("id"=>implode(",",$accessories_dels)));
+	$delete = $con->deleteData(array("id"=>implode(",",$accessories_dels)));	
 	$modified_rows[] = true;	
 	
 }
@@ -98,8 +128,21 @@ if (count($accessories)) {
 	$con->table = "accessory";
 	
 	foreach ($accessories as $index => $value) {
+		
+		$accessories[$index]['cost'] = (round($accessories[$index]['consumption']*$accessories[$index]['landed_cost']));
+		
+		if ($value['id']) {
 			
-		$accessory_row = $con->updateObj($accessories[$index],'id');
+			$accessory_row = $con->updateObj($accessories[$index],'id');
+			
+		} else {
+			
+			unset($accessories[$index]['id']);
+			$accessories[$index]['articles_id'] = $article_id;
+			$accessory_row = $con->insertObj($accessories[$index]);
+			
+		}		
+		
 		$modified_rows[] = ($con->rows)?true:false;		
 	
 	}
@@ -119,8 +162,21 @@ if (count($labors)) {
 	$con->table = "labor";
 
 	foreach ($labors as $index => $value) {
-
-		$labor_row = $con->updateObj($labors[$index],'id');
+		
+		$labors[$index]['cost'] = (round($labors[$index]['tl_min']*$labors[$index]['multiplier']));
+		
+		if ($value['id']) {
+			
+			$labor_row = $con->updateObj($labors[$index],'id');
+			
+		} else {
+			
+			unset($labors[$index]['id']);
+			$labors[$index]['articles_id'] = $article_id;			
+			$labor_row = $con->insertObj($labors[$index]);
+			
+		}		
+		
 		$modified_rows[] = ($con->rows)?true:false;		
 
 	}
@@ -128,20 +184,11 @@ if (count($labors)) {
 }
 
 $article_children_modified = (in_array(true,$modified_rows))?true:false;
-$article_id = duplicate_article($con,$article_modified,$article_children_modified);
-
-
-# duplicate picture
-if (($article_modified) || ($article_children_modified)) {
-
-	$picture = (file_exists("../../pictures/$orig_article_id.jpg"))?"../../pictures/$orig_article_id.jpg":"../../pictures/$orig_article_id.png";
-	$duplicate_picture = PREG_REPLACE("/$orig_article_id/","$article_id",$picture);
-	if (file_exists($picture)) copy($picture,$duplicate_picture);
-}
+$article_id = update_article($con,$article_modified,$article_children_modified);
 
 echo $article_id;
 
-function duplicate_article($con,$article_modified,$article_children_modified) {
+function update_article($con,$article_modified,$article_children_modified) {
 	
 	if ((!$article_modified) && (!$article_children_modified)) return $_POST['article']['id'];
 
@@ -172,92 +219,11 @@ function duplicate_article($con,$article_modified,$article_children_modified) {
 	}
 
 	$con->table = "articles";
-	unset($_POST['article']['id']);
-	$_POST['article']['process_by'] = $_SESSION['id'];
-	$article = $con->insertObj($_POST['article']);
-	$article_id = $con->insertId;
-
-	//fabric 
-	if (count($fabrics)) {
-
-		$con->table = "fabric";
-		
-		foreach ($fabrics as $index => $value) {
-
-			$fabrics[$index]['articles_id'] = $article_id;		
-			
-		}
-		
-		foreach ($fabrics as $index => $value) {
-				
-			unset($fabrics[$index]['id']);
-			$fabric_row = $con->insertObj($fabrics[$index]);
-		
-		}
-		
-	};
-
-	//thread                   
-	if (count($threads)) {
-
-		$con->table = "thread";
-		
-		foreach ($threads as $index => $value) {
-			
-			$threads[$index]['articles_id'] = $article_id;		
-			
-		}
-		
-		foreach ($threads as $index => $value) {
-				
-			unset($threads[$index]['id']);
-			$thread_row = $con->insertObj($threads[$index]);
-		
-		}
-		
-	};
-
-	//accessory                                   
-	if (count($accessories)) {
-
-		$con->table = "accessory";
-		
-		foreach ($accessories as $index => $value) {
-			
-			$accessories[$index]['articles_id'] = $article_id;		
-			
-		}
-		
-		foreach ($accessories as $index => $value) {
-				
-			unset($accessories[$index]['id']);
-			$accessory_row = $con->insertObj($accessories[$index]);
-		
-		}
-		
-	};
-
-	//labors                                   
-	if (count($labors)) {
-
-		$con->table = "labor";
-
-		foreach ($labors as $index => $value) {
-			
-			$labors[$index]['articles_id'] = $article_id;		
-			
-		}
-
-		foreach ($labors as $index => $value) {
-				
-			unset($labors[$index]['id']);
-			$labor_row = $con->insertObj($labors[$index]);
-		
-		}
-
-	};
+	$_POST['article']['pattern_by'] = $_SESSION['id'];
+	$_POST['article']['modified'] = "yes";
+	$article = $con->updateObj($_POST['article'],'id');
 	
-	return $article_id;
+	return $_POST['article']['id'];
 
 }
 

@@ -39,13 +39,13 @@ unset($_POST['article']['labors_dels']);
 
 if ($_POST['article']['id']) {
 	
-	$_POST['article']['process_by'] = $_SESSION['id'];
+	$_POST['article']['pattern_by'] = $_SESSION['id'];
 	$article = $con->updateObj($_POST['article'],'id');
 	$article_id = $_POST['article']['id'];
 	
 } else {
 	
-	$_POST['article']['process_by'] = $_SESSION['id'];
+	$_POST['article']['pattern_by'] = $_SESSION['id'];
 	$article = $con->insertObj($_POST['article']);
 	$article_id = $con->insertId;
 	echo $con->insertId;
@@ -68,7 +68,9 @@ if (count($fabrics)) {
 	foreach ($fabrics as $index => $value) {
 		
 		$fabrics[$index]['articles_id'] = $article_id;		
+		$fabrics[$index]['fabric_m'] = ($fabrics[$index]['qty']*(($fabrics[$index]['dimension_l']/100)*($fabrics[$index]['dimension_w']/100))*1.1);
 		
+		$fabrics[$index]['cost'] = (round($fabrics[$index]['fabric_m']*$fabrics[$index]['landed_cost']));
 	}
 	
 	foreach ($fabrics as $index => $value) {
@@ -102,8 +104,11 @@ if (count($threads)) {
 	
 	foreach ($threads as $index => $value) {
 		
-		$threads[$index]['articles_id'] = $article_id;		
+		$threads[$index]['articles_id'] = $article_id;
 		
+		$threads[$index]['total_weight'] = (round($threads[$index]['initial_wt']-$threads[$index]['net_wt']));
+		
+		$threads[$index]['cost'] = (round($threads[$index]['landed_cost']*$threads[$index]['total_weight']));
 	}
 	
 	foreach ($threads as $index => $value) {
@@ -137,7 +142,9 @@ if (count($accessories)) {
 	
 	foreach ($accessories as $index => $value) {
 		
-		$accessories[$index]['articles_id'] = $article_id;		
+		$accessories[$index]['articles_id'] = $article_id;	
+		
+		$accessories[$index]['cost'] = (round($accessories[$index]['consumption']*$accessories[$index]['landed_cost']));
 		
 	}
 	
@@ -172,7 +179,9 @@ if (count($labors)) {
 	
 	foreach ($labors as $index => $value) {
 		
-		$labors[$index]['articles_id'] = $article_id;		
+		$labors[$index]['articles_id'] = $article_id;	
+
+		$labors[$index]['cost'] = (round($labors[$index]['tl_min']*$labors[$index]['multiplier']));		
 		
 	}
 	

@@ -187,6 +187,19 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 			bui.show();
 			
+			// delete if revised but not modified
+			$http({
+			  method: 'POST',
+			  url: 'handlers/sheets/delete-revisions.php',
+			}).then(function mySucces(response) {			
+				
+				
+			}, function myError(response) {
+				 
+				
+			});			
+			//
+			
 			scope.article = {};
 			scope.article.id = 0;
 			
@@ -375,9 +388,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			$timeout(function() { descriptions(scope); },200);
 			$timeout(function() { departments(scope); },200);
 			
-			mode(scope,row);
-			
-			$timeout(function() { if (scope.article.id==0) articleNo(scope); },100);
+			mode(scope,row);			
 						
 			$('#content').load('forms/sheet.html',function() {
 				$timeout(function() { $compile($('#content')[0])(scope); },200);
@@ -393,10 +404,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				  data: {id: row.id}
 				}).then(function mySucces(response) {
 					
-					angular.copy(response.data, scope.article);
-					// scope.article.date = new Date(response.data.date);
-					
-					imageLoad.go(scope,response.data.id);
+					cloneArticle(scope,response.data);					
 					
 					bui.hide();
 					
@@ -406,18 +414,41 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					 
 				});
 				
+			} else {
+				
+				$timeout(function() { if (scope.article.id==0) articleNo(scope); },100);				
+				
 			};
+			
+			$timeout(function() { bui.hide(); },100);			
+			
+		}; 				
+		
+		function cloneArticle(scope,article) {
+			
+			$http({
+			  method: 'POST',
+			  url: 'handlers/sheets/clone.php',
+			  data: {article: article}
+			}).then(function mySucces(response) {
+				
+				angular.copy(response.data, scope.article);
+				// scope.article.date = new Date(response.data.date);
+				
+				imageLoad.go(scope,response.data.id);					
+				
+			}, function myError(response) {
 
+				 
+			});				
 			
-			$timeout(function() { bui.hide(); },100);
-			
-			
-		}; 
+		};
 		
 		self.descriptionSelect = function($item, scope) {
 			
-			scope.article.description = $item;
-			
+			scope.article.code = $item;
+			scope.article.description = scope.article.code.name;
+
 		};
 		
 		self.delete = function(scope,row) {
@@ -449,10 +480,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			bootstrapModal.confirm(scope,'Confirmation','Are you sure you want to delete this record?',onOk,function() {});
 			
 		};
-		
-		
-		
-		
+							
 		self.fabric = {
 			
 			add: function(scope) {
@@ -468,7 +496,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					dimension_l: '',
 					fabric_m: '',
 					landed_cost: '',
-					cost: ''
+					cost: 'TBD'
 				});
 
 			},			
@@ -510,9 +538,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					color: '',
 					initial_wt: '',
 					net_wt: '',
-					total_weight: '',
+					total_weight: 'TBD',
 					landed_cost: '',
-					cost: ''
+					cost: 'TBD'
 				});
 
 			},			
@@ -554,7 +582,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					size: '',
 					consumption: '',
 					landed_cost: '',
-					cost: ''
+					cost: 'TBD'
 				});
 
 			},			
@@ -599,7 +627,9 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					tl_min: '',
 					hour: '',
 					min: '',
-					sec: ''
+					sec: '',
+					multiplier: '',
+					cost: 'TBD'
 				});
 
 			},			
@@ -700,7 +730,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		//X-axis, Y-axis
 		doc.text(10, 20, 'ARTICLE NO.');
 		
-		doc.text(10, 30, 'DESCRIPTION: '+article.description.name);
+		doc.text(10, 30, 'DESCRIPTION: '+article.description);
 		
 		doc.text(10, 38, 'DESIGN NAME: '+article.design_name);
 		doc.text(36, 38, '___________________');
@@ -752,10 +782,11 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		doc.setFontType('normal');
 		doc.text(195, 350, 'page 1');
 		
-		doc.setFontSize(15)
+		doc.setFontSize(11)
 		doc.setFont('times');
 		doc.setFontType('bold');
-		doc.text(70, 350, 'PROCESS BY: '+article.process_by.fullname);
+		doc.text(6, 350, 'PROCESS BY: '+article.process_by);
+		doc.text(95, 350, 'Program/Pattern by: '+article.pattern_by.fullname);
 		
 		doc.setFontSize(15)
 		doc.setFont('times');
@@ -771,7 +802,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		doc.rect(125, 15, 83, 75); // filled square with borders
 		
 		doc.setDrawColor(255,0,0);
-		doc.rect(68, 344, 115, 9); // filled square with red borders
+		doc.rect(4, 344, 89, 9); // filled square with red borders
+		doc.rect(94, 344, 89, 9); // filled square with red borders
 		
 		doc.setFontSize(11);
 		doc.setFont('times');
@@ -780,8 +812,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		doc.text(10, 98, 'FABRIC CONSUMPTION');
 		
 		angular.forEach(article.datas, function(data,i) {
-			
-			// console.log(i);
+	
 			var header = ["#","DESCRIPTION","QUALITY","QTY","DIMENSION(cm)","FABRIC","LANDED COST","COST (USD)"];
 			
 		
@@ -791,12 +822,13 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 			var top_th = 132;
 			var title_th = 130 ;
+			var fabric_total = 126;
 			
 			angular.forEach(article.datas.fabrics, function(fab,key) {
 				
 				var row = [];
 				row.push(key+1);
-				row.push(fab.description.name);
+				row.push(fab.description);
 				row.push(fab.quality);
 				row.push(fab.qty);
 				row.push(fab.dimension);
@@ -862,89 +894,26 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				{"2": "QUALITY - COLOR","3": "(In grams) - (In grams)","4": "WEIGHT (g)","5": "COST (USD)"},
 			];	
 			
-			// console.log(top_th);
 			var top_ac = top_th+40;
-			// console.log(top_ac);
+			var fabric_total = top_th-6;
+			var fabric_box = top_th-11;
+			
+			doc.setFontSize(11);
+			doc.setFont('times');
+			doc.setFontType('normal');
+			
+			doc.text(155, fabric_total, 'Fabric Total: '+article.fabric_total.total);
+			
+			doc.setDrawColor(0,0,0);
+			doc.rect(154, fabric_box, 56, 8); // filled square with borders
 			
 			var title_ac = top_th+38;
-			console.log(title_ac);
-			/* if(top_th==145){
-				
-				top_ac+=10;
-				title_ac+=10;
-				
-			}else if (top_th==155){
-				
-				top_ac+=20;
-				title_ac+=20;
-				
-			}else if (top_th==165){
-				
-				top_ac+=30;
-				title_ac+=30;
-				
-			}else if (top_th==175){
-				
-				top_ac+=40;
-				title_ac+=40;
-		
-			}else if (top_th==185){
-				
-				top_ac+=50;
-				title_ac+=50;
-		
-			}else if (top_th==195){
-				
-				top_ac+=60;
-				title_ac+=60;
-		
-			}else if (top_th==205){
-				
-				top_ac+=70;
-				title_ac+=70;
-		
-			}else if (top_th==215){
-				
-				top_ac+=80;
-				title_ac+=80;
-		
-			}else if (top_th==225){
-				
-				top_ac+=90;
-				title_ac+=90;
-		
-			}else if (top_th==235){
-				
-				top_ac+=100;
-				title_ac+=100;
-		
-			}else if (top_th==245){
-				
-				top_ac+=110;
-				title_ac+=110;
-		
-			}else if (top_th==255){
-				
-				top_ac+=120;
-				title_ac+=120;
-		
-			}else if (top_th==265){
-				
-				top_ac+=130;
-				title_ac+=130;
-		
-			}else if (top_th==275){
-				
-				top_ac+=140;
-				title_ac+=140;
-		
-			}; */
 			
 			angular.forEach(article.datas.threads, function(thread,t) {
 				
 				var row = [];
 				row.push(t+1);
-				row.push(thread.description.name);
+				row.push(thread.description);
 				row.push(thread.combination);
 				row.push(thread.intial_net);
 				row.push(thread.total_weight);
@@ -1002,6 +971,23 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 			var header_ac = ["#","ITEM","COLOR","SIZE (with Unit)","CONSUMPTION(with Unit)","LANDED COST (USD)","COST (USD)"];
 			
+			var thread_total = title_ac-4;
+			var accessory_total = title_ac+21;
+			
+			var thread_box = title_ac-9;
+			var accessory_box = accessory_total-5;
+	
+			doc.setFontSize(11);
+			doc.setFont('times');
+			doc.setFontType('normal');
+			
+			doc.text(155, thread_total, 'Threads Total: '+article.thread_total.total);
+			
+			doc.setDrawColor(0,0,0);
+			doc.rect(154, thread_box, 56, 8); // filled square with borders
+			
+			var labor_total = 180;
+			
 			var rows_ac = [];	
 			
 			angular.forEach(article.datas.accessories, function(acc,a) {
@@ -1017,7 +1003,23 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				
 				rows_ac.push(row);
 				
+				if(a==0) {
+					accessory_total+=10;
+					accessory_box+=10;
+				} else {
+					accessory_total+=10;
+					accessory_box+=10;
+				};
+				
 			});
+			
+			doc.setFontSize(11);
+			doc.setFont('times');
+			doc.setFontType('normal');
+			doc.text(155, accessory_total, 'Accessory Total: '+article.accessory_total.total);
+			
+			doc.setDrawColor(0,0,0);
+			doc.rect(154, accessory_box, 56, 8); // filled square with borders
 			
 			doc.autoTable(header_ac, rows_ac,{
 				theme: 'striped',
@@ -1056,38 +1058,81 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		doc.addPage();	
 		footer();
 		
+		var top_labor = 10;
+		var laborTotal = 45;
+		var laborBox = 40;
+		
+		var grandtitle = 65;
+		var grandtotal = 60;
+					
 		doc.setFontSize(11);
-			doc.setFont('times');
-			doc.setFontType('normal');
-			doc.text(10, 10, 'LABOR CONSUMPTION');
-			
-			var header_labor = ["DEPARTMENT","PROCESS","SPECIAL INSTRUCTION/S","OPERATOR","APPROVED TIME","TL","ACTUAL TIME"];
+		doc.setFont('times');
+		doc.setFontType('normal');
+		doc.text(2, top_labor, 'LABOR CONSUMPTION');
+		
+		// var header_labor = ["DEPARTMENT","PROCESS","SPECIAL INSTRUCTION/S","OPERATOR","APPROVED TIME","TL","ACTUAL TIME"];
+		
+			var header_labor = [
+				{title: "DEPARTMENT", dataKey: "1"},
+				{title: "PROCESS", dataKey: "2"},
+				{title: "SPECIAL INSTRUCTION/S", dataKey: "3"},
+				{title: "OPERATOR", dataKey: "4"},
+				{title: "APPROVED TIME", dataKey: "5"},
+				{title: "ACTUAL TIME", dataKey: "6"},
+				{title: "MULTIPLIER", dataKey: "7"},
+				{title: "COST (USD)", dataKey: "8"},
+			];
 			
 			var rows_labor = [
 				{"5": "(min)","6": "Hour - Min - Sec"},
 			
-			];				
-			
+			];
+						
 			angular.forEach(article.datas.labors, function(labor,l) {
 				
 				var row = [];
-				row.push(labor.department.name);
+				row.push(labor.department);
 				row.push(labor.process);
 				row.push(labor.special_instruction);
 				row.push(labor.operator);
 				row.push(labor.approved_time);
 				row.push(labor.tl_min);
 				row.push(labor.time);
+				row.push(labor.multipier);
+				row.push(labor.cost);
 				
 				rows_labor.push(row);
 				
+				if(l==0) {
+					laborTotal+=10;
+					laborBox+=10;
+					grandtitle+=10;
+					grandtotal+=10;
+				} else {
+					laborTotal+=10;
+					laborBox+=10;
+					grandtitle+=10;
+					grandtotal+=10;
+				};
+				
 			});
+
+			doc.setFontSize(11);
+			doc.setFont('times');
+			doc.setFontType('bold');
+			doc.text(155, laborTotal, 'Labor Total: '+article.labor_total.total);
+			doc.setDrawColor(0,0,0);
+			doc.rect(154, laborBox, 56, 8); // filled square with borders
 			
+			doc.text(155, grandtitle, 'Grand Total Cost: '+article.grandtotal.final_total);
+			doc.setDrawColor(0,0,0);
+			doc.rect(154, grandtotal, 56, 8); // filled square with borders
+				
 			doc.autoTable(header_labor, rows_labor,{
 				theme: 'striped',
 				margin: {
 					top: 12, 
-					left: 10 
+					left: 2 
 				},
 				tableWidth: 500,
 				styles: {
@@ -1095,13 +1140,16 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 28.5,
+					columnWidth: 21.5,
 					
+				},
+				columnStyles: {
+					1: {columnWidth: 22},
+					3: {columnWidth: 60},
 				},
 				headerStyles: {
 					halign: 'center',
-					// fillColor: [191, 191, 191],
-					fillColor: [62, 188, 83],
+					fillColor: [191, 191, 191],
 					textColor: 50,
 					fontSize: 7
 				},

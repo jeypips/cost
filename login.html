@@ -31,7 +31,18 @@ if (isset($_SESSION['id'])) header("location: index.php");
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-        
+		<style> 
+			.account-pages {
+			  background-image: url("assets/images/background-login.jpg");
+			  background-color: #cccccc;
+			  background-repeat: no-repeat;
+			  background-size: 100%;
+			  
+			}
+			.wrapper-page{
+				opacity: 1;
+			}
+		</style>
     </head>
     <body ng-app="login" ng-controller="loginCtrl">
 
