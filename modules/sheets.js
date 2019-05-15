@@ -494,7 +494,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					qty: '',
 					dimension_w: '',
 					dimension_l: '',
-					fabric_m: '',
+					fabric_m: 'TBD',
 					landed_cost: '',
 					cost: 'TBD'
 				});
