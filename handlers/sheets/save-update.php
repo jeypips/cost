@@ -57,9 +57,9 @@ if (count($fabrics)) {
 	
 	foreach ($fabrics as $index => $value) {			
 		
-		$threads[$index]['total_weight'] = ($threads[$index]['initial_wt']-$threads[$index]['net_wt']);
-		
-		$threads[$index]['cost'] = (round($threads[$index]['landed_cost']*$threads[$index]['total_weight']));
+		$fabrics[$index]['fabric_m'] = ($fabrics[$index]['qty']*(($fabrics[$index]['dimension_l']/100)*($fabrics[$index]['dimension_w']/100))*1.1);
+	
+		$fabrics[$index]['cost'] = (round($fabrics[$index]['fabric_m']*$fabrics[$index]['landed_cost']));
 		
 		if ($value['id']) {
 			
@@ -196,7 +196,7 @@ function update_article($con,$article_modified,$article_children_modified) {
 		
 	$old_article_no_revision = $_POST['article']['article_no_revision'];		
 	
-	# version no	
+/* 	# version no	
 	if ($article_modified) {
 		$old_no_revision = $_POST['article']['article_no_revision'];
 		$ld = substr($old_no_revision,strlen($old_no_revision)-1,1);
@@ -216,7 +216,7 @@ function update_article($con,$article_modified,$article_children_modified) {
 		$new_article_no_revision = STR_PAD((string)$ild,(strlen((string)$ild)==1)?strlen((string)$ild)+1:strlen((string)$ild),"0",STR_PAD_LEFT);		
 		$new_article_no_revision = substr($old_article_no_revision,0,1).$new_article_no_revision;
 		$_POST['article']['article_no_revision'] = $new_article_no_revision;
-	}
+	} */
 
 	$con->table = "articles";
 	$_POST['article']['pattern_by'] = $_SESSION['id'];

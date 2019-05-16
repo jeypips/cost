@@ -123,7 +123,6 @@
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>
                                     <li><a href="groups.php" class="waves-effect">Groups</a></li>
-									<li><a href="departments.php" class="waves-effect">Departments</a></li>
                                     <li class="active"><a href="descriptions.php" class="waves-effect">Descriptions</a></li>
                                 </ul>
                             </li>

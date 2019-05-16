@@ -48,9 +48,11 @@ th {
 							</div>
 						</div>
 						<div class="col-md-4">
-							<div class="form-group">
+							<div class="form-group" ng-class="{'has-error': formHolder.article.article_no_revision.$touched && formHolder.article.article_no_revision.$invalid}">
 								<label>&nbsp;</label>
-								<input type="text" class="form-control" name="article_no_revision" ng-model="article.article_no_revision" disabled>
+								<input type="text" class="form-control" name="article_no_revision" ng-model="article.article_no_revision" ng-disabled="controls.ok.btn" ng-keypress="app.on_type(this)" required>
+								<span class="help-block" ng-show="formHolder.article.article_no_revision.$touched && formHolder.article.article_no_revision.$invalid">This field is required</span>
+								<span class="text-danger" ng-show="article.not_unique_version">Already exists</span>
 							</div>
 						</div>
 					</div>

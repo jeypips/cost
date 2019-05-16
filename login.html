@@ -15,7 +15,7 @@ if (isset($_SESSION['id'])) header("location: index.php");
         <link rel="shortcut icon" href="assets/images/favicon_1.ico">
 
         <title>Login - Cost Sheet System</title>
-
+		
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,8 @@ if (isset($_SESSION['id'])) header("location: index.php");
         <![endif]-->
 
         <script src="assets/js/modernizr.min.js"></script>
-		<style> 
+
+<!-- 		<style> 
 			.account-pages {
 			  background-image: url("assets/images/background-login.jpg");
 			  background-color: #cccccc;
@@ -42,13 +43,30 @@ if (isset($_SESSION['id'])) header("location: index.php");
 			.wrapper-page{
 				opacity: 1;
 			}
-		</style>
+		</style> -->
+	<style> 
+	 body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .ct {
+      height: 95.8vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+    }
+	</style>
     </head>
     <body ng-app="login" ng-controller="loginCtrl">
 
-        <div class="account-pages"></div>
-        <div class="clearfix"></div>
-		
+
+  <div class="container ct">
+
+    <div class="row">
+
         <div class="wrapper-page">
         	<div class=" card-box">
 				<div class="panel-heading"> 
@@ -92,6 +110,28 @@ if (isset($_SESSION['id'])) header("location: index.php");
             </div>       
         </div>
         
+
+    </div>
+
+
+  </div>
+
+  <script src="easy_background.js"></script>
+
+  <script>
+    easy_background("body",
+
+      {
+        slide: ["img/1.png", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg", "img/6.jpg", "img/7.jpg", "img/8.jpg", "img/9.png", "img/10.jpg", "img/11.png", "img/12.jpg", "img/13.jpg", "img/14.jpg"],
+
+        delay: [5000, 5000, 5000, 5000, 5000,5000, 5000, 5000, 5000, 5000,5000, 5000, 5000, 5000]
+      }
+
+
+    );
+  </script>
+
+     
         
     	<script>
             var resizefunc = [];
@@ -117,7 +157,9 @@ if (isset($_SESSION['id'])) header("location: index.php");
 		
 		<!--Angularjs -->
 		<script src="angular/modules/login/login.js"></script>
-		
-	
+		<script>
+			$('.carousel').carousel();
+		</script>
+
 	</body>
 </html>

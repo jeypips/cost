@@ -68,7 +68,8 @@ if (count($fabrics)) {
 	foreach ($fabrics as $index => $value) {
 		
 		$fabrics[$index]['articles_id'] = $article_id;		
-		$fabrics[$index]['fabric_m'] = ($fabrics[$index]['qty']*(($fabrics[$index]['dimension_l']/100)*($fabrics[$index]['dimension_w']/100))*1.1);
+		
+		$fabrics[$index]['fabric_m'] = ($fabrics[$index]['qty']*((($fabrics[$index]['dimension_l']/100)*($fabrics[$index]['dimension_w']/100))*1.1));
 		
 		$fabrics[$index]['cost'] = (round($fabrics[$index]['fabric_m']*$fabrics[$index]['landed_cost']));
 	}

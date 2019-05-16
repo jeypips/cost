@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 15, 2019 at 03:17 PM
+-- Generation Time: May 15, 2019 at 03:34 PM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -42,7 +42,9 @@ CREATE TABLE `accessory` (
 --
 
 INSERT INTO `accessory` (`id`, `articles_id`, `item`, `color`, `size`, `consumption`, `landed_cost`, `cost`) VALUES
-(1, 1, 'Sample', 'Red', '1', '2', '3', '6');
+(1, 1, 'Sample', 'Red', '1', '2', '3', '6'),
+(2, 2, 'Sample', 'Red', '1', '2', '3', '6'),
+(3, 3, 'Sample', 'Red', '1', '2', '3', '6');
 
 -- --------------------------------------------------------
 
@@ -99,6 +101,7 @@ CREATE TABLE `articles` (
   `process_by` varchar(100) DEFAULT NULL,
   `pattern_by` varchar(100) DEFAULT NULL,
   `not_unique` varchar(100) DEFAULT NULL,
+  `not_unique_version` varchar(10) DEFAULT NULL,
   `revision` varchar(10) DEFAULT NULL,
   `modified` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -107,8 +110,10 @@ CREATE TABLE `articles` (
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `code`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`, `pattern_by`, `not_unique`, `revision`, `modified`) VALUES
-(1, 1, '1312011', '000', 'Pillowcase', 'Pillowcase', '06/10/2017', NULL, NULL, NULL, NULL, 'Red', '10', NULL, NULL, NULL, NULL, NULL, 'Radjz', '1', '', NULL, NULL);
+INSERT INTO `articles` (`id`, `code`, `article_no`, `article_no_revision`, `description`, `design_name`, `date`, `pattern_date`, `customer`, `desired_size`, `full_width_desired_size`, `color`, `raw_size`, `estimate`, `final_raw_size`, `full_width_fabric`, `finished_size`, `shrinkage`, `process_by`, `pattern_by`, `not_unique`, `not_unique_version`, `revision`, `modified`) VALUES
+(1, 1, '1312011', '000', 'Pillowcase', 'Pillowcase', '06/10/2017', NULL, NULL, NULL, NULL, 'Red', '10', NULL, NULL, NULL, NULL, NULL, 'Radjz', '1', '', NULL, NULL, NULL),
+(2, 1, '1312011', '001', 'Pillowcase', 'Pillowcase', '06/10/2017', NULL, NULL, NULL, NULL, 'Blue', '10', NULL, NULL, NULL, NULL, NULL, 'Radjz', '1', '', '', 'yes', 'yes'),
+(3, 1, '1312011', '002', 'Pillowcase', 'Pillowcase', '06/10/2017', NULL, NULL, NULL, NULL, 'Red', '10', NULL, NULL, NULL, NULL, NULL, 'Radjz', '1', '', '', 'yes', 'yes');
 
 -- --------------------------------------------------------
 
@@ -174,7 +179,9 @@ CREATE TABLE `fabric` (
 --
 
 INSERT INTO `fabric` (`id`, `articles_id`, `description`, `quality`, `color`, `qty`, `dimension_w`, `dimension_l`, `fabric_m`, `landed_cost`, `cost`) VALUES
-(1, 1, 'Sample', 'Sample', 'Red', '1', '2', '3', '0.00066', '4', '0');
+(1, 1, 'Sample', 'Sample', 'Red', '1', '2', '3', '0.00066', '4', '0'),
+(2, 2, 'Sample', 'Sample', 'Red', '1', '2', '3', '0.00066', '4', '0'),
+(3, 3, 'Sample', 'Sample', 'Red', '1', '2', '3', '0.00066', '4', '0');
 
 -- --------------------------------------------------------
 
@@ -224,7 +231,10 @@ CREATE TABLE `labor` (
 --
 
 INSERT INTO `labor` (`id`, `articles_id`, `department`, `process`, `special_instruction`, `operator`, `approved_time`, `tl_min`, `hour`, `min`, `sec`, `multiplier`, `cost`) VALUES
-(1, 1, 'Office', 'Sample', 'Sample', 'Sample', '1', '2', '3', '4', '5', '6', '12');
+(1, 1, 'Office', 'Sample', 'Sample', 'Sample', '1', '2', '3', '4', '5', '6', '12'),
+(2, 2, 'Office', 'Sample', 'Sample', 'Sample', '1', '2', '3', '4', '5', '6', '12'),
+(3, 3, 'Office', 'Sample', 'Sample', 'Sample', '1', '2', '3', '4', '5', '6', '12'),
+(4, 3, '', '', '', '', '1', '2', '3', '4', '5', '6', '12');
 
 -- --------------------------------------------------------
 
@@ -251,7 +261,9 @@ CREATE TABLE `thread` (
 
 INSERT INTO `thread` (`id`, `articles_id`, `description`, `quality`, `color`, `initial_wt`, `net_wt`, `total_weight`, `landed_cost`, `cost`) VALUES
 (6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 1, 'Sample', 'Sample', 'Red', '1', '2', '-1', '3', '-3');
+(7, 1, 'Sample', 'Sample', 'Red', '1', '2', '-1', '3', '-3'),
+(8, 2, 'Sample', 'Sample', 'Red', '1', '2', '-1', '3', '-3'),
+(9, 3, 'Sample', 'Sample', 'Red', '1', '2', '-1', '3', '-3');
 
 --
 -- Indexes for dumped tables
@@ -323,7 +335,7 @@ ALTER TABLE `thread`
 -- AUTO_INCREMENT for table `accessory`
 --
 ALTER TABLE `accessory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `accounts`
 --
@@ -333,7 +345,7 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `departments`
 --
@@ -348,7 +360,7 @@ ALTER TABLE `descriptions`
 -- AUTO_INCREMENT for table `fabric`
 --
 ALTER TABLE `fabric`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `groups`
 --
@@ -358,12 +370,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `labor`
 --
 ALTER TABLE `labor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `thread`
 --
 ALTER TABLE `thread`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --

@@ -29,6 +29,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.article.alert.message = '';
 			
 			scope.article.not_unique = false;
+			scope.article.not_unique_version = false;
 			
 			scope.article.fabrics = [];
 			scope.article.fabrics_dels = [];
@@ -42,6 +43,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.articles = []; // list
 			
 			watchInfo(scope);
+			watchVersion(scope);
 			
 		};
 		
@@ -63,7 +65,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 								scope.article.not_unique = false;
 							};
 							
-						console.log(scope.article.not_unique);
+						// console.log(scope.article.not_unique);
 					}, function(res) {
 						
 					});
@@ -71,6 +73,28 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				});
 
 			}, 1000);			
+			
+		};
+		
+		function username_is_unique(scope) {
+			
+			return $q(function(resolve,reject) {
+				
+				$http({
+					method: 'POST',
+					url: 'handlers/sheets/article_no_check.php',
+					data: scope.article
+				}).then(function mySuccess(response) {
+
+					resolve(response.data.status);
+		
+				}, function myError(response) {
+
+					reject(false);
+
+				});					
+				
+			});
 			
 		};
 		
@@ -88,7 +112,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 						
 							scope.article.not_unique = res;
 							
-						console.log(scope.article.not_unique);
+						// console.log(scope.article.not_unique);
 					}, function(res) {
 						
 					});
@@ -99,13 +123,68 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 		};
 		
-		function username_is_unique(scope) {
+		self.on_type = function(scope) {
+			
+			$timeout(function() {
+			
+				scope.$watch(function(scope) {
+					
+					return scope.article.article_no_revision;
+					
+				},function(newValue, oldValue) {
+					
+					version_unique(scope).then(function(res) {
+						
+							scope.article.not_unique_version = res;
+							
+						// console.log(scope.article.not_unique_version);
+					}, function(res) {
+						
+					});
+
+				});
+
+			}, 1000);
+			
+		};
+		
+		function watchVersion(scope) {
+			
+			$timeout(function() {
+			
+				scope.$watch(function(scope) {
+					
+					return scope.article.article_no_revision;
+					
+				},function(newValue, oldValue) {
+					
+					version_unique(scope).then(function(res) {
+						
+							if(scope.article.article_no_revision==null){
+								scope.article.not_unique_version = res;
+							}else{
+								scope.article.not_unique_version = false;
+							};
+							
+							// scope.article.not_unique_version = res;
+						// console.log(scope.article.not_unique_version);
+					}, function(res) {
+						
+					});
+
+				});
+
+			}, 1000);			
+			
+		};
+		
+		function version_unique(scope) {
 			
 			return $q(function(resolve,reject) {
 				
 				$http({
 					method: 'POST',
-					url: 'handlers/sheets/article_no_check.php',
+					url: 'handlers/sheets/version_no.php',
 					data: scope.article
 				}).then(function mySuccess(response) {
 
@@ -246,7 +325,8 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		
 		self.cancel = function(scope) {
 			
-			if(scope.article.description==null)
+			self.list(scope);
+			/* if(scope.article.description==null)
 			{
 					
 				if (scope.article.id>0) {
@@ -271,7 +351,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					
 				window.location.reload(true);
 				
-			};
+			}; */
 		};
 		
 		self.edit = function(scope) {
@@ -291,7 +371,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 				console.log(scope.article.not_unique);
 				
-				if(scope.article.not_unique==false){
+				if(scope.article.not_unique==false && scope.article.not_unique_version==false){
 				if (scope.controls.ok.label == 'Save') {
 			
 					$http({
@@ -368,7 +448,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 						
 			bui.show();
 			
-			console.log(scope.article.not_unique);
+			console.log(scope.article.not_unique_version);
 			
 			scope.article = {};
 			scope.article.id = 0;
@@ -416,7 +496,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				
 			} else {
 				
-				$timeout(function() { if (scope.article.id==0) articleNo(scope); },100);				
+				// $timeout(function() { if (scope.article.id==0) articleNo(scope); },100);				
 				
 			};
 			
@@ -902,7 +982,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			doc.setFont('times');
 			doc.setFontType('normal');
 			
-			doc.text(155, fabric_total, 'Fabric Total: '+article.fabric_total.total);
+			doc.text(155, fabric_total, 'Fabric Total: '+article.grandtotal.total_fabric.total);
 			
 			doc.setDrawColor(0,0,0);
 			doc.rect(154, fabric_box, 56, 8); // filled square with borders
@@ -981,7 +1061,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			doc.setFont('times');
 			doc.setFontType('normal');
 			
-			doc.text(155, thread_total, 'Threads Total: '+article.thread_total.total);
+			doc.text(155, thread_total, 'Threads Total: '+article.grandtotal.total_thread.total);
 			
 			doc.setDrawColor(0,0,0);
 			doc.rect(154, thread_box, 56, 8); // filled square with borders
@@ -1016,7 +1096,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			doc.setFontSize(11);
 			doc.setFont('times');
 			doc.setFontType('normal');
-			doc.text(155, accessory_total, 'Accessory Total: '+article.accessory_total.total);
+			doc.text(155, accessory_total, 'Accessory Total: '+article.grandtotal.total_accessory.total);
 			
 			doc.setDrawColor(0,0,0);
 			doc.rect(154, accessory_box, 56, 8); // filled square with borders
@@ -1098,7 +1178,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				row.push(labor.approved_time);
 				row.push(labor.tl_min);
 				row.push(labor.time);
-				row.push(labor.multipier);
+				row.push(labor.multiplier);
 				row.push(labor.cost);
 				
 				rows_labor.push(row);
@@ -1120,7 +1200,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			doc.setFontSize(11);
 			doc.setFont('times');
 			doc.setFontType('bold');
-			doc.text(155, laborTotal, 'Labor Total: '+article.labor_total.total);
+			doc.text(155, laborTotal, 'Labor Total: '+article.grandtotal.total_labor.total);
 			doc.setDrawColor(0,0,0);
 			doc.rect(154, laborBox, 56, 8); // filled square with borders
 			

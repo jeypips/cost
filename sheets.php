@@ -120,11 +120,10 @@
                                 <li><a href="sheets.php" class="waves-effect active"><i class="ti-files"></i><span> Sheets </span></a></li>
                             </li>
 							<li class="has_sub" ng-show="profile.pages_access.maintenance.value">
-                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">4</span><span> Maintenance </span> </a>
+                                <a href="#" class="waves-effect"><i class="ti-settings"></i> <span class="label label-primary pull-right">3</span><span> Maintenance </span> </a>
                                 <ul class="list-unstyled" style="display: none;">
                                     <li><a href="accounts.php">Accounts</a></li>
                                     <li><a href="groups.php" class="waves-effect">Groups</a></li>
-									<li><a href="departments.php" class="waves-effect">Departments</a></li>
                                     <li><a href="descriptions.php" class="waves-effect">Descriptions</a></li>
                                 </ul>
                             </li>
