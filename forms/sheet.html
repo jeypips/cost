@@ -73,11 +73,10 @@ th {
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.design_name.$touched && formHolder.article.design_name.$invalid}">
+						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
-								<label>Design Name <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" name="design_name" ng-model="article.design_name" ng-disabled="controls.ok.btn" required>
-								<span class="help-block" ng-show="formHolder.article.design_name.$touched && formHolder.article.design_name.$invalid">This field is required</span>
+								<label>Design Name</label>
+								<input type="text" class="form-control" name="design_name" ng-model="article.design_name" ng-disabled="controls.ok.btn">
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-12">
@@ -159,11 +158,10 @@ th {
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6 col-sm-12" ng-class="{'has-error': formHolder.article.process_by.$touched && formHolder.article.process_by.$invalid}">
+						<div class="col-md-6 col-sm-12">
 							<div class="form-group">
-								<label>Process by: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" name="process_by" ng-model="article.process_by" ng-disabled="controls.ok.btn" required>
-								<span class="help-block" ng-show="formHolder.article.process_by.$touched && formHolder.article.process_by.$invalid">This field is required</span>							
+								<label>Process by:</label>
+								<input type="text" class="form-control" name="process_by" ng-model="article.process_by" ng-disabled="controls.ok.btn">
 							</div>
 						</div>
 					</div>

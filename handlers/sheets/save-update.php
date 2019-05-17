@@ -59,7 +59,7 @@ if (count($fabrics)) {
 		
 		$fabrics[$index]['fabric_m'] = ($fabrics[$index]['qty']*(($fabrics[$index]['dimension_l']/100)*($fabrics[$index]['dimension_w']/100))*1.1);
 	
-		$fabrics[$index]['cost'] = (round($fabrics[$index]['fabric_m']*$fabrics[$index]['landed_cost']));
+		$fabrics[$index]['cost'] = ($fabrics[$index]['fabric_m']*$fabrics[$index]['landed_cost']);
 		
 		if ($value['id']) {
 			
@@ -95,7 +95,7 @@ if (count($threads)) {
 		
 		$threads[$index]['total_weight'] = ($threads[$index]['initial_wt']-$threads[$index]['net_wt']);
 		
-		$threads[$index]['cost'] = (round($threads[$index]['landed_cost']*$threads[$index]['total_weight']));
+		$threads[$index]['cost'] = ($threads[$index]['landed_cost']*$threads[$index]['total_weight']);
 		
 		if ($value['id']) {
 			
@@ -129,7 +129,7 @@ if (count($accessories)) {
 	
 	foreach ($accessories as $index => $value) {
 		
-		$accessories[$index]['cost'] = (round($accessories[$index]['consumption']*$accessories[$index]['landed_cost']));
+		$accessories[$index]['cost'] = ($accessories[$index]['consumption']*$accessories[$index]['landed_cost']);
 		
 		if ($value['id']) {
 			
@@ -163,7 +163,7 @@ if (count($labors)) {
 
 	foreach ($labors as $index => $value) {
 		
-		$labors[$index]['cost'] = (round($labors[$index]['tl_min']*$labors[$index]['multiplier']));
+		$labors[$index]['cost'] = ($labors[$index]['tl_min']*$labors[$index]['multiplier']);
 		
 		if ($value['id']) {
 			

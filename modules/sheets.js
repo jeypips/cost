@@ -29,7 +29,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.article.alert.message = '';
 			
 			scope.article.not_unique = false;
-			scope.article.not_unique_version = false;
+			// scope.article.not_unique_version = false;
 			
 			scope.article.fabrics = [];
 			scope.article.fabrics_dels = [];
@@ -43,7 +43,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			scope.articles = []; // list
 			
 			watchInfo(scope);
-			watchVersion(scope);
+			// watchVersion(scope);
 			
 		};
 		
@@ -123,7 +123,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 		};
 		
-		self.on_type = function(scope) {
+		/* self.on_type = function(scope) {
 			
 			$timeout(function() {
 			
@@ -198,7 +198,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 				
 			});
 			
-		};
+		}; */
 		
 		self.uploadProfilePicture = function(scope) {
 			
@@ -371,7 +371,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 			
 				console.log(scope.article.not_unique);
 				
-				if(scope.article.not_unique==false && scope.article.not_unique_version==false){
+				if(scope.article.not_unique==false){
 				if (scope.controls.ok.label == 'Save') {
 			
 					$http({
@@ -835,10 +835,12 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		doc.text(73, 30, 'COLOR #: ');
 		doc.text(100, 30, ''+article.color);
 		
-		doc.text(73, 38, 'RAW SIZE (cm): '+article.raw_size);
+		doc.text(73, 38, 'RAW SIZE (cm): ');
+		doc.text(100, 38, ''+article.raw_size);
 		doc.text(99, 38, '___________');
 		
-		doc.text(73, 46, 'ESTIMATE: '+article.estimate);
+		doc.text(73, 46, 'ESTIMATE: ');
+		doc.text(100, 46, ''+article.estimate);
 		doc.text(99, 46, '___________');
 		
 		doc.text(71, 54, 'Final Raw Size (if');
@@ -1153,18 +1155,19 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		// var header_labor = ["DEPARTMENT","PROCESS","SPECIAL INSTRUCTION/S","OPERATOR","APPROVED TIME","TL","ACTUAL TIME"];
 		
 			var header_labor = [
-				{title: "DEPARTMENT", dataKey: "1"},
-				{title: "PROCESS", dataKey: "2"},
-				{title: "SPECIAL INSTRUCTION/S", dataKey: "3"},
-				{title: "OPERATOR", dataKey: "4"},
-				{title: "APPROVED TIME", dataKey: "5"},
+				{title: "DEPARTMENT", dataKey: "0"},
+				{title: "PROCESS", dataKey: "1"},
+				{title: "SPECIAL INSTRUCTION/S", dataKey: "2"},
+				{title: "OPERATOR", dataKey: "3"},
+				{title: "APPROVED TIME", dataKey: "4"},
+				{title: "TL", dataKey: "5"},
 				{title: "ACTUAL TIME", dataKey: "6"},
 				{title: "MULTIPLIER", dataKey: "7"},
 				{title: "COST (USD)", dataKey: "8"},
 			];
 			
 			var rows_labor = [
-				{"5": "(min)","6": "Hour - Min - Sec"},
+				{"4": "(Min)","5": "(Min)","6": "Hour - Min - Sec"},
 			
 			];
 						
@@ -1220,12 +1223,12 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 					lineWidth: 0.50,
 					cellPadding: 3,
 					overflow: 'linebreak',
-					columnWidth: 21.5,
+					columnWidth: 20,
 					
 				},
 				columnStyles: {
-					1: {columnWidth: 22},
-					3: {columnWidth: 60},
+					0: {columnWidth: 22},
+					2: {columnWidth: 50},
 				},
 				headerStyles: {
 					halign: 'center',
