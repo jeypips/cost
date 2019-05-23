@@ -34,8 +34,8 @@ $file_type = explode("/",$type);
 
 $article[0]['picture'] = $file;
 
-/* $desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$article[0]['description']);
-$article[0]['description'] = $desc[0]; */
+$desc = $con->getData("SELECT * FROM descriptions WHERE id = ".$article[0]['code']);
+$article[0]['code'] = $desc[0];
 
 
 $fabric_total = $con->getData("SELECT COUNT(id) total FROM fabric WHERE articles_id = ".$article[0]['id']);

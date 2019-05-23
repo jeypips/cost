@@ -1,4 +1,4 @@
-angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap',,'module-access']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui,fileUpload,access,imageLoad,$q) {
+angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.bootstrap','module-access']).factory('app', function($compile,$window,$timeout,$http,bootstrapModal,growl,bui,fileUpload,access,imageLoad,$q) {
 	
 	function app() {
 		
@@ -810,7 +810,7 @@ angular.module('app-module',['bootstrap-modal','bootstrap-growl','block-ui','ui.
 		//X-axis, Y-axis
 		doc.text(10, 20, 'ARTICLE NO.');
 		
-		doc.text(10, 30, 'DESCRIPTION: '+article.description);
+		doc.text(10, 30, 'DESCRIPTION: '+article.code.code+' '+article.description);
 		
 		doc.text(10, 38, 'DESIGN NAME: '+article.design_name);
 		doc.text(36, 38, '___________________');
